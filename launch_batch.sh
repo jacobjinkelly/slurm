@@ -15,7 +15,7 @@ reg=r2
 r_lam_file=${reg}_lams.txt
 
 mkdir -p vaughan2/$dir/$j_name
-cp $r_lam_file vaughan2/$dir/$j_name  # TODO: check this, and also this is hardcoded!
+cp $r_lam_file vaughan2/$dir/$j_name  # TODO: this is hardcoded to mattch launch_job.sh
 
 # training sweep
 while IFS= read -r lam
@@ -23,5 +23,5 @@ do
     ./launch_job.sh $dir $partition ${j_name}_${reg}_${lam} $file "--lam=$lam --reg=$reg" $q
 done < "$r_lam_file"
 
-# TODO: train vanilla!
+# vanilla
 ./launch_job.sh $dir $partition $j_name $file "" $q
