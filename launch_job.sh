@@ -4,16 +4,16 @@ d=$1
 partition=$2
 j_name=$3
 file=$4
-args=$5 # specify reg and lam
-q=$6  # TODO: high, deadline (need account), normal
+args=$5 # specify params for sweep
+q=$6  # high, deadline (need account), normal
 resource=1
-ssd=$(pwd)  # TODO: set to directory where jobs will be stored
+ssd=$(pwd)  # directory where jobs will be stored
 j_dir=$ssd/$d/$j_name
 
 mkdir -p $j_dir/scripts
 
-# TODO: CPU num and GPU mem
 # build slurm script
+# CPU num and GPU mem can probably be lowered
 mkdir -p $j_dir/log
 echo "#!/bin/bash
 #SBATCH --job-name=${j_name}
