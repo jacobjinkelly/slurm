@@ -67,9 +67,7 @@ def parse_config(config_file):
                 if len(args) == 1:
                     fixed_args += f"--{arg_name}"
                 else:
-                    # the only other config arg should be "values" with True and False
-                    assert len(args) == 2
-                    assert "values" in args
+                    # the config arg "values" should be just True and False
                     assert set(args["values"]) == {True, False}
 
         else:
