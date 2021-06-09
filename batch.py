@@ -128,8 +128,13 @@ def get_j_name(sweep_arg, sweep_keys):
 
 
 def get_j_args(sweep_arg, sweep_keys):
-    return " ".join([f"--{arg_name}" if isinstance(arg, bool) else f"--{arg_name} {arg}"
-                     for arg_name, arg in sweep_arg])
+    j_args = []
+    for arg_name, arg in sweep_arg:
+        if isinstance(arg, bool):
+            j_args.append(f"--{arg_name}")
+        else:
+            j_args.append(f"--{arg_name} {arg}")
+    return " ".join(j_args)
 
 
 def launch_sweep(args):
