@@ -109,7 +109,7 @@ def parse_config(config_file):
             raise ValueError(f"Got different lengths for sweep key {sweep_key}.")
         sweep_args.append([(sweep_key, i) for i in range(sweep_key_len)])
 
-    return fixed_args, product(sweep_args), sweep_keys
+    return fixed_args, product(*sweep_args), sweep_keys
 
 
 def get_single_j_name(arg_name, arg):
