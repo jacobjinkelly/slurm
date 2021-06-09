@@ -110,16 +110,16 @@ def parse_config(config_file):
             sweep_key_len, = set(map(len, sweep_keys[sweep_key]))
         except ValueError:
             raise ValueError(f"Got different lengths for sweep key {sweep_key}.")
-        sweep_args.append([sweep_keys[sweep_key]])
+        sweep_args.append([(sweep_key, i) for i in range(sweep_key_len)])
 
-    return fixed_args, product(sweep_args)
+    return fixed_args, product(sweep_args), sweep_keys
 
 
 def launch_sweep(args):
     """
     Launch a sweep of jobs.
     """
-    fixed_args, sweep_args = parse_config(args.config)
+    fixed_args, sweep_args, sweep_keys = parse_config(args.config)
 
     for sweep_arg in sweep_args:
         j_name = "_".join([f"{arg_name}_{arg}" for arg_name, arg in sweep_arg])
