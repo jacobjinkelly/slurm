@@ -41,5 +41,8 @@ Once the sweep is configured, the job can be launched as follows.
 ./batch.py -c example.json -p PARTITION -j JOB_NAME -f FILE_TO_RUN -q SLURM_QOS
 ```
 
+The output of the job will be saved by default in `experiments/${DATE_TIME}`, 
+with a directory for each configuration of hyperparameters being swept over.
+
 ## Issues
 - If the file to be run passed to `launch_batch.sh` is changed, that new version will be run when the job is submitted to the queue (either due to waiting or preemption). One solution is to copy the file into the job directory and create the job script from there.
