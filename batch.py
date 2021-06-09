@@ -2,8 +2,8 @@
 
 import argparse
 import os
-import sys
 import shutil
+import sys
 from datetime import datetime
 
 assert sys.version_info.major == 3
