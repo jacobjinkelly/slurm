@@ -42,12 +42,8 @@ def setup_dirs(args):
     shutil.copy("param_check.sh", exp_dir)
 
     # record git state
-    git_commit_state_file = os.path.join(exp_dir, "commit.state")
-    with open(git_commit_state_file, "w") as f:
-        subprocess.run("git rev-parse HEAD", stdout=f, stderr=f, **subprocess_kwargs)
-    git_diff_patch_file = os.path.join(exp_dir, "diff.patch")
-    with open(git_diff_patch_file, "w") as f:
-        subprocess.run("git diff", stdout=f, stderr=f, **subprocess_kwargs)
+    run_cmd("git rev-parse HEAD", os.path.join(exp_dir, "commit.state"))
+    run_cmd("git diff", os.path.join(exp_dir, "diff.patch"))
 
 
 def main():
