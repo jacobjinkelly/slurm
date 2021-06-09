@@ -102,7 +102,7 @@ def launch_job(exp_dir, partition, j_name, file, args, q, resource, cpus_per_tas
         f.write("touch /checkpoint/$USER/\\$SLURM_JOB_ID/DELAYPURGE\n")
 
         # launch job
-        f.write("python $file $args --save_dir ${j_dir} --ckpt_path=/checkpoint/$USER/\\$SLURM_JOB_ID/ck.pt")
+        f.write(f"python {file} {args} --save_dir {j_dir} --ckpt_path=/checkpoint/$USER/\\$SLURM_JOB_ID/ck.pt")
 
         # add command to run job script
         f.write(f"bash ${j_dir}/scripts/${j_name}.sh")
