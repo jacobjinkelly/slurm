@@ -168,7 +168,7 @@ def launch_sweep(args):
 
 
 def launch_job(exp_dir, partition, j_name, file, args, q,
-               ckpt, env, resource, cpus_per_task, mem, exclude=None, ntasks_per_node=1, nodes=1):
+               ckpt, env, resource, cpus_per_task, mem, exclude, ntasks_per_node, nodes):
     """
     Launch a single job as part of the sweep.
     """
