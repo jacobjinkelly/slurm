@@ -10,10 +10,11 @@ resource=2
 ssd=$(pwd) # directory where jobs will be stored
 j_dir=$ssd/$d/$j_name
 
-mkdir -p $j_dir/scripts
+mkdir -p "$j_dir"/scripts
 
 # build slurm script
 # CPU num and GPU mem need to be adjusted
+# shellcheck disable=SC2086
 mkdir -p $j_dir/log
 echo "#!/bin/bash
 #SBATCH --job-name=${j_name}
@@ -25,19 +26,19 @@ echo "#!/bin/bash
 #SBATCH --mem=$((64))G
 #SBATCH --nodes=1
 #SBATCH --exclude=gpu089
-#SBATCH --qos=${q}" >$j_dir/scripts/${j_name}.slrm
+#SBATCH --qos=${q}" >"$j_dir"/scripts/"${j_name}".slrm
 
 if [[ ${partition} != "cpu" ]]; then
-  echo "#SBATCH --gres=gpu:${resource}" >>$j_dir/scripts/${j_name}.slrm
+  echo "#SBATCH --gres=gpu:${resource}" >>"$j_dir"/scripts/"${j_name}".slrm
 fi
 
 if [[ ${q} == "deadline" ]]; then
-  echo "#SBATCH --account=deadline" >>$j_dir/scripts/${j_name}.slrm
+  echo "#SBATCH --account=deadline" >>"$j_dir"/scripts/"${j_name}".slrm
 fi
 
 echo "
 bash ${j_dir}/scripts/${j_name}.sh
-" >>$j_dir/scripts/${j_name}.slrm
+" >>"$j_dir"/scripts/"${j_name}".slrm
 
 # build bash script
 
@@ -46,8 +47,8 @@ echo -n "#!/bin/bash
 touch /checkpoint/$USER/\$SLURM_JOB_ID/DELAYPURGE
 python $file $args --save_dir ${j_dir} --ckpt_path=/checkpoint/$USER/\$SLURM_JOB_ID/ck.pt
 
-" >$j_dir/scripts/${j_name}.sh
+" >"$j_dir"/scripts/"${j_name}".sh
 
-cp $file $j_dir/scripts/
+cp "$file" "$j_dir"/scripts/
 
-sbatch $j_dir/scripts/${j_name}.slrm
+sbatch "$j_dir"/scripts/"${j_name}".slrm
