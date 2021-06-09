@@ -16,7 +16,7 @@ To set up scripts in a new repo `new_repo`, simply run
 
 ### Configuring Sweeps
 From the new repo, sweeps can be configured by creating a json file.
-See `example.json` for a template.
+See `example.json` for a template example.
 
 Each key in the json file corresponds to a command line argument.
 The key can point to a list of values to be swept, a single value to be set, 
