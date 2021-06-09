@@ -151,12 +151,12 @@ def launch_sweep(args):
         j_name = get_j_name(sweep_arg, sweep_keys)
         j_args = fixed_args + get_j_args(sweep_arg, sweep_keys)
         launch_job(args.exp_dir, args.partition, j_name, args.file, j_args, args.q,
-                   args.no_ckpt, args.env, args.resource, args.cpus_per_task, args.mem, args.exclude,
+                   args.no_save_dir, args.no_ckpt, args.env, args.resource, args.cpus_per_task, args.mem, args.exclude,
                    args.ntasks_per_node, args.nodes)
 
 
 def launch_job(exp_dir, partition, j_name, file, args, q,
-               no_ckpt, env, resource, cpus_per_task, mem, exclude, ntasks_per_node, nodes):
+               no_save_dir, no_ckpt, env, resource, cpus_per_task, mem, exclude, ntasks_per_node, nodes):
     """
     Launch a single job as part of the sweep.
     """
@@ -207,7 +207,10 @@ def launch_job(exp_dir, partition, j_name, file, args, q,
         # activate environment
         f.write(f". /h/$USER/envs/{env}.env\n")
 
-        final_args = f"{args} --save_dir {j_dir}"
+        final_args = args
+
+        if not no_save_dir:
+            final_args += f"--save_dir {j_dir}"
 
         if not no_ckpt:
             # config checkpoint
