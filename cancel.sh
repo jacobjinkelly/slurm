@@ -1,4 +1,4 @@
 #!/bin/bash
-for i in $(seq 2022950 2022974); do
+for i in $(seq "${1}" "${2}"); do
   scancel "$i"
 done
