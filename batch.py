@@ -78,7 +78,7 @@ def parse_config(config_file):
                 # we have a bool argument that has no arg to be passed in with it
                 assert args["bool"] is True
                 if len(args) == 1:
-                    fixed_args += f"--{arg_name}"
+                    fixed_args += f"--{arg_name} "  # include a space!
                 else:
                     # the config arg "values" should be just True and False
                     assert set(args["values"]) == {True, False}
