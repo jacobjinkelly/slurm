@@ -119,7 +119,6 @@ def launch_sweep(args):
     fixed_args, sweep_args = parse_config(args.config)
 
     for sweep_arg in sweep_args:
-        # sweep_arg is a list of (arg_name, arg) tuples
         j_name = "_".join([f"{arg_name}_{arg}" for arg_name, arg in sweep_arg])
         j_args = fixed_args + " ".join([f"--{arg_name}" if isinstance(arg, bool) else f"--{arg_name} {arg}"
                                         for arg_name, arg in sweep_arg])
