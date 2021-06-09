@@ -68,7 +68,7 @@ def parse_config(config_file):
 
     fixed_args = ""
     sweep_args = []
-    sweep_keys = []
+    sweep_keys = set()
     for arg_name, args in config.items():
         if isinstance(args, list):
             # sweep of values
@@ -84,13 +84,13 @@ def parse_config(config_file):
                     assert set(args["values"]) == {True, False}
                     if "key" in args:
                         # this arg is swept in parallel with another one, save them all for the end
-                        sweep_keys.append(args["key"])
+                        sweep_keys.add(args["key"])
                     else:
                         # this arg is swept independently
                         sweep_args.append([(arg_name, arg) for arg in args["values"]])
             else:
                 # if no "key" and no "bool", then sweep values should be specified as a list
-                sweep_keys.append(args["key"])
+                sweep_keys.add(args["key"])
 
         else:
             # add the fixed argument
