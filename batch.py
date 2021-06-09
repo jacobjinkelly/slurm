@@ -117,8 +117,8 @@ def launch_job(exp_dir, partition, j_name, file, args, q, resource, cpus_per_tas
 
 def main():
     args = get_args()
-
     setup(args)
+    launch_sweep(args)
 
 
 if __name__ == "__main__":
