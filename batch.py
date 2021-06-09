@@ -226,7 +226,7 @@ def launch_job(exp_dir, partition, j_name, file, args, q,
         f.write(f"python {file} {final_args}")
 
     # launch job
-    # subprocess.run(f"sbatch {slurm_script}")
+    subprocess.run(f"sbatch {slurm_script}")
 
 
 def main():
