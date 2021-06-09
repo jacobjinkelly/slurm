@@ -64,8 +64,8 @@ def parse_config(config_file):
             # more information
             pass
         else:
-            # single value
-            fixed_args += f"--{arg_name} {args} "
+            # add the fixed argument
+            fixed_args += f"--{arg_name} {args} "  # include a space!
 
 
 def launch_sweep(args):
