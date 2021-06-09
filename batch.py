@@ -27,6 +27,7 @@ def get_args():
     # default arguments that will rarely be changed
     parser.add_argument("--exp_dir", type=str, default="experiments")
     parser.add_argument("--env", type=str, default="torch")
+    parser.add_argument("--ckpt", action="store_true", default=False)
     parser.add_argument("--resource", type=int, default=1)
     parser.add_argument("--cpus_per_task", type=int, default=2)
     parser.add_argument("--mem", type=int, default=16)
@@ -167,7 +168,7 @@ def launch_sweep(args):
 
 
 def launch_job(exp_dir, partition, j_name, file, args, q,
-               env, resource, cpus_per_task, mem, exclude=None, ntasks_per_node=1, nodes=1):
+               ckpt, env, resource, cpus_per_task, mem, exclude=None, ntasks_per_node=1, nodes=1):
     """
     Launch a single job as part of the sweep.
     """
@@ -218,11 +219,16 @@ def launch_job(exp_dir, partition, j_name, file, args, q,
         # activate environment
         f.write(f". /h/$USER/envs/{env}.env\n")
 
-        # config checkpoint
-        f.write("touch /checkpoint/$USER/\\$SLURM_JOB_ID/DELAYPURGE\n")
+        final_args = f"{args} --save_dir {j_dir}"
+
+        if ckpt:
+            # config checkpoint
+            f.write("touch /checkpoint/$USER/\\$SLURM_JOB_ID/DELAYPURGE\n")
+
+            final_args += "--ckpt_path=/checkpoint/$USER/\\$SLURM_JOB_ID/ck.pt"
 
         # launch job
-        f.write(f"python {file} {args} --save_dir {j_dir} --ckpt_path=/checkpoint/$USER/\\$SLURM_JOB_ID/ck.pt")
+        f.write(f"python {file} {final_args}")
 
     # launch job
     subprocess.run(f"sbatch {slurm_script}")
