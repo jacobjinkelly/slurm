@@ -98,7 +98,7 @@ def launch_job(exp_dir, partition, j_name, file, args, q, resource, cpus_per_tas
         # activate environment
         f.write(". /h/jkelly/envs/torch.env\n")
 
-        f.write("touch /checkpoint/$USER/\$SLURM_JOB_ID/DELAYPURGE\n")
+        f.write("touch /checkpoint/$USER/\\$SLURM_JOB_ID/DELAYPURGE\n")
 
         # add command to run job script
         f.write(f"bash ${j_dir}/scripts/${j_name}.sh")
