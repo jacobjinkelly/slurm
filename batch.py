@@ -6,6 +6,7 @@ import os
 import shutil
 import subprocess
 import sys
+from collections import defaultdict
 from datetime import datetime
 from itertools import product
 
