@@ -55,6 +55,7 @@ def parse_config(config_file):
     with open(config_file, "r") as f:
         config = json.load(f)
 
+    fixed_args = ""
     for arg_name, args in config.items():
         if isinstance(args, list):
             # sweep of values
@@ -64,7 +65,7 @@ def parse_config(config_file):
             pass
         else:
             # single value
-            pass
+            fixed_args += f"--{arg_name} {arg}"
 
 
 def launch_sweep(args):
