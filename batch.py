@@ -71,7 +71,7 @@ def launch_job(exp_dir, partition, j_name, file, args, q, resource, cpus_per_tas
         f.write(f"#SBATCH --partition={partition}\n")
         f.write(f"#SBATCH --cpus-per-task={cpus_per_task}\n")
         f.write("#SBATCH --ntasks-per-node=1\n")
-        f.write(f"#SBATCH --mem={64}G\n")
+        f.write(f"#SBATCH --mem={mem}G\n")
         f.write("#SBATCH --nodes=1\n")
         f.write("#SBATCH --exclude=gpu089\n")
         f.write(f"#SBATCH --qos=${q}\n")
