@@ -13,6 +13,7 @@ def main():
     parser = argparse.ArgumentParser("Launch a sweep of jobs")
 
     parser.add_argument("--partition", type=str, default="t4v2")
+    parser.add_argument("--j_name", type=str, required=True)
 
 
 if __name__ == "__main__":
