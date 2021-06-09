@@ -69,14 +69,15 @@ def parse_config(config_file):
                 else:
                     # the config arg "values" should be just True and False
                     assert set(args["values"]) == {True, False}
-                    if "key" in args:
-                        # this arg is swept in parallel with another one
-                        # TODO
-                        assert False
-                    else:
-                        # this arg is swept independently
-                        # TODO
-                        assert False
+            else:
+                if "key" in args:
+                    # this arg is swept in parallel with another one
+                    # TODO
+                    assert False
+                else:
+                    # this arg is swept independently
+                    # TODO
+                    assert False
 
         else:
             # add the fixed argument
