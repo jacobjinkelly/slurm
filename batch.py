@@ -18,6 +18,8 @@ def main():
     parser.add_argument("--args", type=str)
     parser.add_argument("--q", type=str, required=True)
 
+    args = parser.parse_args()
+
 
 if __name__ == "__main__":
     main()
