@@ -82,7 +82,7 @@ def parse_config(config_file):
                         assert False
                     else:
                         # this arg is swept independently
-                        sweep_args.append([(arg_name, arg) for arg in args])
+                        sweep_args.append([(arg_name, arg) for arg in args["values"]])
             else:
                 # if no "key" and no "bool", then sweep values should be specified as a list
                 assert "key" in args
