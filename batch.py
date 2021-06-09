@@ -46,7 +46,7 @@ def setup(args):
     run_cmd("git diff", os.path.join(exp_dir, "diff.patch"))
 
 
-def launch_job(exp_dir, partition, j_name, file, args, q, resource):
+def launch_job(exp_dir, partition, j_name, file, args, q, resource, cpus_per_task, mem):
     """
     Launch a single job as part of the sweep.
     """
@@ -69,9 +69,9 @@ def launch_job(exp_dir, partition, j_name, file, args, q, resource):
         f.write(f"#SBATCH --output=${j_dir_log}/%j.out\n")
         f.write(f"#SBATCH --error=${j_dir_log}/%j.err\n")
         f.write(f"#SBATCH --partition=${partition}\n")
-        f.write("#SBATCH --cpus-per-task=$((4))\n")
+        f.write(f"#SBATCH --cpus-per-task=$({cpus_per_task})\n")
         f.write("#SBATCH --ntasks-per-node=1\n")
-        f.write("#SBATCH --mem=$((64))G\n")
+        f.write(f"#SBATCH --mem=$({64})G\n")
         f.write("#SBATCH --nodes=1\n")
         f.write("#SBATCH --exclude=gpu089\n")
         f.write(f"#SBATCH --qos=${q}\n")
