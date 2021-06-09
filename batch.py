@@ -4,6 +4,7 @@ import argparse
 import os
 import shutil
 import sys
+import subprocess
 from datetime import datetime
 
 assert sys.version_info.major == 3
@@ -34,6 +35,15 @@ def setup_dirs(args):
     # copy files for checking sweeps
     shutil.copy("check.sh", exp_dir)
     shutil.copy("param_check.sh", exp_dir)
+
+    # record git state
+    git_commit_state_file = os.path.join(exp_dir, "commit.state")
+    git_diff_patch_file = os.path.join(exp_dir, "diff.patch")
+    command = subprocess.run(['ls', '-l'], capture_output=True)
+
+    sys.stdout.buffer.write(command.stdout)
+    sys.stderr.buffer.write(command.stderr)
+    sys.exit(command.returncode)
 
 
 def main():
