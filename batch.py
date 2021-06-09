@@ -141,8 +141,8 @@ def get_j_args(sweep_arg, sweep_keys):
     j_args = []
     for arg_name, arg in sweep_arg:
         if arg_name in sweep_keys:
-            for sweep_key_pairs in sweep_keys[arg_name]:
-                j_args.append(get_single_j_arg(*sweep_key_pairs[arg]))
+            for key_arg_name in sorted(sweep_keys[arg_name]):
+                j_args.append(get_single_j_arg(key_arg_name, sweep_keys[arg_name][key_arg_name][arg]))
         else:
             j_args.append(get_single_j_arg(arg_name, arg))
     return " ".join(j_args)
