@@ -1,13 +1,13 @@
 #!/usr/bin/python3
 
 import argparse
+import json
 import os
 import shutil
-import sys
 import subprocess
-import json
-from itertools import product
+import sys
 from datetime import datetime
+from itertools import product
 
 assert sys.version_info.major == 3
 assert sys.version_info.minor >= 6
