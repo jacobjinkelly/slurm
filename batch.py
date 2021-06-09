@@ -18,7 +18,7 @@ def get_args():
     parser = argparse.ArgumentParser("Launch a sweep of jobs")
 
     # arguments that will be set for most sweeps
-    parser.add_argument("-p", "--partition", type=str, default="t4v2")
+    parser.add_argument("-p", "--partition", type=str, required=True)
     parser.add_argument("-j", "--j_name", type=str, required=True)
     parser.add_argument("-f", "--file", type=str, required=True)
     parser.add_argument("-a", "--args", type=str)
