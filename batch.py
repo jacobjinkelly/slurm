@@ -7,7 +7,7 @@ assert sys.version_info.major == 3
 assert sys.version_info.minor >= 6
 
 
-def main():
+def get_args():
     parser = argparse.ArgumentParser("Launch a sweep of jobs")
 
     parser.add_argument("-p", "--partition", type=str, default="t4v2")
@@ -16,9 +16,11 @@ def main():
     parser.add_argument("-a", "--args", type=str)
     parser.add_argument("-q", "--q", type=str, required=True)
 
-    args = parser.parse_args()
+    return parser.parse_args()
 
-    print("hello")
+
+def main():
+    args = get_args()
 
 
 if __name__ == "__main__":
