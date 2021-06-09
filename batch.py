@@ -70,6 +70,7 @@ def launch_job(exp_dir, partition, j_name, file, args, q, resource):
         f.write("#SBATCH --cpus-per-task=$((4))\n")
         f.write("#SBATCH --ntasks-per-node=1\n")
         f.write("#SBATCH --mem=$((64))G\n")
+        f.write("#SBATCH --nodes=1\n")
 
 
 def main():
