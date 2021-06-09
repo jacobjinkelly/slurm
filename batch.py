@@ -55,6 +55,17 @@ def parse_config(config_file):
     with open(config_file, "r") as f:
         config = json.load(f)
 
+    for arg_name, args in config.items():
+        if isinstance(args, list):
+            # sweep of values
+            pass
+        elif isinstance(args, dict):
+            # more information
+            pass
+        else:
+            # single value
+            pass
+
 
 def launch_sweep(args):
     """
