@@ -49,6 +49,8 @@ def setup(args):
     run_cmd("git rev-parse HEAD", os.path.join(exp_dir, "commit.state"))
     run_cmd("git diff", os.path.join(exp_dir, "diff.patch"))
 
+    return exp_dir
+
 
 def parse_config(config_file):
     """
@@ -111,7 +113,9 @@ def launch_sweep(args):
     fixed_args, sweep_args = parse_config(args.config)
 
     for sweep_arg in sweep_args:
-        pass
+        # sweep_arg is a list of (arg_name, arg) tuples
+        j_name = "_".join([f"{arg_name}_{arg}" for arg_name, arg in sweep_arg])
+        launch_job(args.exp_dir, args.partition)
 
 
 def launch_job(exp_dir, partition, j_name, file, args, q, resource, cpus_per_task, mem,
@@ -147,7 +151,7 @@ def launch_job(exp_dir, partition, j_name, file, args, q, resource, cpus_per_tas
         f.write(f"#SBATCH --qos=${q}\n")
 
         if exclude is not None:
-            f.write(f"#SBATCH --exclude={exclude.join(',')}\n")
+            f.write(f"#SBATCH --exclude={','.join(exclude)}\n")
 
         if partition != "cpu":
             f.write(f"#SBATCH --gres=gpu:${resource}")
@@ -178,7 +182,7 @@ def launch_job(exp_dir, partition, j_name, file, args, q, resource, cpus_per_tas
 
 def main():
     args = get_args()
-    setup(args)
+    args.exp_dir = setup(args)
     launch_sweep(args)
 
 
