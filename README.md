@@ -32,7 +32,7 @@ If the key points to a dictionary, that dictionary can have the following keys s
 - The `values` key can be set to a list of values.
   If `key` and `bool` are not set, then we can just pass in a list directly.
   If `bool` is set, the only option for this is `[true, false]`.
-  If `key` is set, then `values` must be a list of the same length for the same value of `key`.
+  If `key` is set, then `values` must be the same length across all entries with the same `key`.
 
 ### Launching Sweeps
 
