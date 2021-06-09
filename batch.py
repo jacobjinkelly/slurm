@@ -28,7 +28,7 @@ def get_args():
     # default arguments that will rarely be changed
     parser.add_argument("--exp_dir", type=str, default="experiments")
     parser.add_argument("--env", type=str, default="torch")
-    parser.add_argument("--ckpt", action="store_true", default=False)
+    parser.add_argument("--no_ckpt", action="store_true", default=False)
     parser.add_argument("--resource", type=int, default=1)
     parser.add_argument("--cpus_per_task", type=int, default=2)
     parser.add_argument("--mem", type=int, default=16)
@@ -151,12 +151,12 @@ def launch_sweep(args):
         j_name = get_j_name(sweep_arg, sweep_keys)
         j_args = fixed_args + get_j_args(sweep_arg, sweep_keys)
         launch_job(args.exp_dir, args.partition, j_name, args.file, j_args, args.q,
-                   args.ckpt, args.env, args.resource, args.cpus_per_task, args.mem, args.exclude,
+                   args.no_ckpt, args.env, args.resource, args.cpus_per_task, args.mem, args.exclude,
                    args.ntasks_per_node, args.nodes)
 
 
 def launch_job(exp_dir, partition, j_name, file, args, q,
-               ckpt, env, resource, cpus_per_task, mem, exclude, ntasks_per_node, nodes):
+               no_ckpt, env, resource, cpus_per_task, mem, exclude, ntasks_per_node, nodes):
     """
     Launch a single job as part of the sweep.
     """
@@ -209,7 +209,7 @@ def launch_job(exp_dir, partition, j_name, file, args, q,
 
         final_args = f"{args} --save_dir {j_dir}"
 
-        if ckpt:
+        if not no_ckpt:
             # config checkpoint
             f.write("touch /checkpoint/$USER/\\$SLURM_JOB_ID/DELAYPURGE\n")
 
