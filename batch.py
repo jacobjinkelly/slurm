@@ -98,7 +98,10 @@ def launch_job(exp_dir, partition, j_name, file, args, q, resource, cpus_per_tas
         # activate environment
         f.write(". /h/$USER/envs/torch.env\n")
 
+        # config checkpoint
         f.write("touch /checkpoint/$USER/\\$SLURM_JOB_ID/DELAYPURGE\n")
+
+        # launch job
         f.write("python $file $args --save_dir ${j_dir} --ckpt_path=/checkpoint/$USER/\\$SLURM_JOB_ID/ck.pt")
 
         # add command to run job script
