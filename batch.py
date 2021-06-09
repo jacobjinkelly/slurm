@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 
 import argparse
-import sys
 import os
+import sys
 from datetime import datetime
 
 assert sys.version_info.major == 3
