@@ -185,19 +185,19 @@ def launch_job(exp_dir, partition, j_name, file, args, q,
         f.write(f"#SBATCH --ntasks-per-node={ntasks_per_node}\n")
         f.write(f"#SBATCH --mem={mem}G\n")
         f.write(f"#SBATCH --nodes={nodes}\n")
-        f.write(f"#SBATCH --qos=${q}\n")
+        f.write(f"#SBATCH --qos={q}\n")
 
         if exclude is not None:
             f.write(f"#SBATCH --exclude={','.join(exclude)}\n")
 
         if partition != "cpu":
-            f.write(f"#SBATCH --gres=gpu:${resource}")
+            f.write(f"#SBATCH --gres=gpu:{resource}")
 
         if q == "deadline":
             f.write("#SBATCH --account=deadline")
 
         # add command to run job script
-        f.write(f"bash ${j_dir}/scripts/${j_name}.sh")
+        f.write(f"bash {j_dir}/scripts/{j_name}.sh")
 
     # write job script
     job_script = os.path.join(j_dir_scripts, f"{j_name}.sh")
@@ -219,7 +219,7 @@ def launch_job(exp_dir, partition, j_name, file, args, q,
         f.write(f"python {file} {final_args}")
 
     # launch job
-    subprocess.run(f"sbatch {slurm_script}")
+    # subprocess.run(f"sbatch {slurm_script}")
 
 
 def main():
