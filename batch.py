@@ -44,7 +44,7 @@ def setup_dirs(args):
     }
     git_commit_state_file = os.path.join(exp_dir, "commit.state")
     with open(git_commit_state_file, "w") as f:
-        subprocess.run("git rev-parse HEAD", **subprocess_kwargs)
+        subprocess.run("git rev-parse HEAD", stdout=f, stderr=f, **subprocess_kwargs)
     git_diff_patch_file = os.path.join(exp_dir, "diff.patch")
     command = subprocess.run(['ls', '-l'], capture_output=True)
 
