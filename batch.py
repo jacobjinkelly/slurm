@@ -18,6 +18,8 @@ def main():
 
     args = parser.parse_args()
 
+    print("hello")
+
 
 if __name__ == "__main__":
     main()
