@@ -57,6 +57,7 @@ def parse_config(config_file):
 
     # for fixed args, we just need to return a string for argparse to parse later on
     # for variable args, we need to return an iterator which tries all the possibilities
+    # the output of the iterator also needs to be structured so that we know the argument names and values
 
     fixed_args = ""
     for arg_name, args in config.items():
