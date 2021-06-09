@@ -66,11 +66,6 @@ def parse_config(config_file):
     with open(config_file, "r") as f:
         config = json.load(f)
 
-    # for fixed args, we just need to return a string for argparse to parse later on
-    # for variable args, we need to return an iterator which tries all the possibilities
-    # the output of the iterator also needs to be structured so that we know the argument names and values
-    # that way we can put the argument names in the job name
-
     fixed_args = ""
     sweep_args = []
     sweep_keys = []
@@ -231,7 +226,7 @@ def launch_job(exp_dir, partition, j_name, file, args, q,
         f.write(f"python {file} {final_args}")
 
     # launch job
-    subprocess.run(f"sbatch {slurm_script}")
+    # subprocess.run(f"sbatch {slurm_script}")
 
 
 def main():
