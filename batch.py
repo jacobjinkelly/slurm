@@ -3,7 +3,7 @@
 import argparse
 import sys
 import os
-from datetime import date
+from datetime import datetime
 
 assert sys.version_info.major == 3
 assert sys.version_info.minor >= 6
@@ -24,7 +24,7 @@ def get_args():
 def main():
     args = get_args()
 
-    exp_dir = os.path.join("experiments", date.today().strftime("%F-%H-%M-%S"))
+    exp_dir = os.path.join("experiments", datetime.now().strftime("%F-%H-%M-%S"))
 
     print(exp_dir)
 
