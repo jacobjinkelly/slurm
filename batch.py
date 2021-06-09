@@ -65,7 +65,7 @@ def parse_config(config_file):
             pass
         else:
             # single value
-            fixed_args += f"--{arg_name} {arg} "
+            fixed_args += f"--{arg_name} {args} "
 
 
 def launch_sweep(args):
