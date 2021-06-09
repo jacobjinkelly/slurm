@@ -9,6 +9,7 @@ import sys
 from collections import defaultdict
 from datetime import datetime
 from itertools import product
+from functools import partial
 
 assert sys.version_info.major == 3
 assert sys.version_info.minor >= 6
@@ -134,6 +135,10 @@ def get_j(join_str, get_single_j, sweep_arg, sweep_keys):
         else:
             j_name_args.append(get_single_j(arg_name, arg))
     return join_str.join(j_name_args)
+
+
+get_j_name = partial(get_j, "_", get_single_j_name)
+get_j_args = partial(get_j, " ", get_single_j_arg)
 
 
 def launch_sweep(args):
