@@ -64,6 +64,7 @@ def launch_job(exp_dir, partition, j_name, file, args, q, resource):
         f.write(f"#SBATCH --job-name=${j_name}\n")
         f.write(f"#SBATCH --output=${j_dir_log}/%j.out\n")
         f.write(f"#SBATCH --error=${j_dir_log}/%j.err\n")
+        f.write(f"#SBATCH --partition=${partition}\n")
 
 
 def main():
