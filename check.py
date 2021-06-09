@@ -14,6 +14,7 @@ def get_args():
     # arguments that need to be set for each sweep
     parser.add_argument("-s", "--substr", type=str, default="")
     parser.add_argument("-f", "--file", type=str, default="log.txt")
+    parser.add_argument("-l", "--line", type=int, default=-1)
 
     return parser.parse_args()
 
@@ -21,8 +22,9 @@ def get_args():
 def main():
     args = get_args()
 
-    for log in glob(f"*{args.substr}/{args.file}"):
-        pass
+    for log_file in glob(f"*{args.substr}/{args.file}"):
+        with open(log_file, "r") as f:
+            f.readlines
 
 
 if __name__ == "__main__":
