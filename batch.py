@@ -46,7 +46,8 @@ def setup(args):
     run_cmd("git diff", os.path.join(exp_dir, "diff.patch"))
 
 
-def launch_job(exp_dir, partition, j_name, file, args, q, resource, cpus_per_task, mem, ntasks_per_node=1, nodes=1):
+def launch_job(exp_dir, partition, j_name, file, args, q, resource, cpus_per_task, mem,
+               exclude=None, ntasks_per_node=1, nodes=1):
     """
     Launch a single job as part of the sweep.
     """
