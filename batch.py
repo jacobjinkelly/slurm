@@ -26,11 +26,15 @@ def get_args():
     return parser.parse_args()
 
 
+def setup_dirs(args):
+    exp_dir = os.path.join(args.experiment_dir, datetime.now().strftime("%F-%H-%M-%S"))
+    os.makedirs(exp_dir)
+
+
 def main():
     args = get_args()
 
-    exp_dir = os.path.join(args.experiment_dir, datetime.now().strftime("%F-%H-%M-%S"))
-    os.makedirs(exp_dir)
+    setup_dirs(args)
 
 
 if __name__ == "__main__":
