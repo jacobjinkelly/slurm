@@ -63,6 +63,7 @@ def launch_job(exp_dir, partition, j_name, file, args, q, resource):
         # explicit \n is best according to
         # https://stackoverflow.com/questions/6159900/correct-way-to-write-line-to-file
 
+        # configure SLURM
         f.write("#!/bin/bash\n")
         f.write(f"#SBATCH --job-name=${j_name}\n")
         f.write(f"#SBATCH --output=${j_dir_log}/%j.out\n")
@@ -81,6 +82,7 @@ def launch_job(exp_dir, partition, j_name, file, args, q, resource):
         if q == "deadline":
             f.write("#SBATCH --account=deadline")
 
+        # run job
         f.write(f"bash ${j_dir}/scripts/${j_name}.sh")
 
 
