@@ -251,7 +251,7 @@ for k in 40; do # utzappos
                         steps_jname=${transform_every}_${test_gibbs_steps}_${test_gibbs_k_steps}
                         sweep_args="--gibbs_steps ${gibbs_steps} --p_y_x ${p_y_x} --first_gibbs ${first_gibbs} --temp ${temp} --kl ${kl} --transform_every ${transform_every}"
                         full_jname=${j_name}_${k}_${n_steps}_${gibbs_steps}_${sigma}_${step_size}_${p_y_x}_${first_gibbs}_${temp}_${kl}_${steps_jname}
-                        ./job.sh $dir $partition ${full_jname} $file "${fixed_args} ${sgld_args} ${sweep_args} ${steps_args}" $q
+                        ./job.sh "$dir" "$partition" "${full_jname}" "$file" "${fixed_args} ${sgld_args} ${sweep_args} ${steps_args}" $q
                       done
                     done
                   done
