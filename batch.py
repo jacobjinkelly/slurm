@@ -104,7 +104,7 @@ def parse_config(config_file):
 
     for sweep_key in sorted(sweep_keys):
         try:
-            sweep_key_len, = set(map(len, sweep_keys_args[sweep_key]))
+            sweep_key_len, = set(map(len, sweep_keys_args[sweep_key].values()))
         except ValueError:
             raise ValueError(f"Got different lengths for sweep key {sweep_key}.")
         sweep_args.append([(sweep_key, i) for i in range(sweep_key_len)])
