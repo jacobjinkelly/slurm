@@ -107,6 +107,9 @@ def launch_sweep(args):
     """
     fixed_args, sweep_args = parse_config(args.config)
 
+    for sweep_arg in sweep_args:
+        pass
+
 
 def launch_job(exp_dir, partition, j_name, file, args, q, resource, cpus_per_task, mem,
                exclude=None, ntasks_per_node=1, nodes=1):
