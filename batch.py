@@ -50,6 +50,7 @@ def launch_job(exp_dir, partition, j_name, file, args, q, resource):
     """
     Launch a single job as part of the sweep.
     """
+    # set up directory for job
     j_dir = os.path.join(os.getcwd(), exp_dir, j_name)
     os.makedirs(j_dir)
 
