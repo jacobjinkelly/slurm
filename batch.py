@@ -118,7 +118,7 @@ def launch_sweep(args):
         j_args = fixed_args + " ".join([f"--{arg_name}" if isinstance(arg, bool) else f"--{arg_name} {arg}"
                                         for arg_name, arg in sweep_arg])
         launch_job(args.exp_dir, args.partition, j_name, args.file, j_args, args.q,
-                   args.resource, args.cpus_per_task)
+                   args.resource, args.cpus_per_task, args.mem, args.exclude, args.ntasks_per_node, args.nodes)
 
 
 def launch_job(exp_dir, partition, j_name, file, args, q,
