@@ -26,6 +26,8 @@ def main():
 
     exp_dir = os.path.join("experiments", date.today().strftime("+%F-%H-%M-%S"))
 
+    print(exp_dir)
+
 
 if __name__ == "__main__":
     main()
