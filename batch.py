@@ -59,7 +59,8 @@ def launch_job(exp_dir, partition, j_name, file, args, q, resource):
 
     # write SLURM script
     slurm_script = os.path.join(j_dir_scripts, f"{j_name}.slrm")
-    with open()
+    with open(slurm_script, "w") as f:
+        f.write("#!/bin/bash\n")
 
 
 def main():
