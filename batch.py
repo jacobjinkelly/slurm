@@ -80,7 +80,7 @@ def launch_job(exp_dir, partition, j_name, file, args, q, resource):
         if q == "deadline":
             f.write("#SBATCH --account=deadline")
 
-        f.write("bash ${j_dir}/scripts/${j_name}.sh")
+        f.write(f"bash ${j_dir}/scripts/${j_name}.sh")
 
 
 def main():
