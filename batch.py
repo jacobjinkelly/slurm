@@ -62,7 +62,10 @@ def parse_config(config_file):
             pass
         elif isinstance(args, dict):
             if "bool" in args:
+                # we have a bool argument that has no arg to be passed in with it
                 assert args["bool"] is True
+                if len(args) == 1:
+                    fixed_args += f"--{arg_name}"
         else:
             # add the fixed argument
             fixed_args += f"--{arg_name} {args} "  # include a space!
