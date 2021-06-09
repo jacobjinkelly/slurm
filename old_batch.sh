@@ -9,7 +9,6 @@ q=$4
 # job name should include the values being swept over
 
 dir=experiments/$(date "+%F-%H-%M-%S")
-mkdir -p "${dir}"/"${j_name}"
 
 # copy script for checking job sweep
 cp check.sh $dir
