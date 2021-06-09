@@ -14,8 +14,7 @@ mkdir -p "$j_dir"/scripts
 
 # build slurm script
 # CPU num and GPU mem need to be adjusted
-# shellcheck disable=SC2086
-mkdir -p $j_dir/log
+mkdir -p "$j_dir"/log
 echo "#!/bin/bash
 #SBATCH --job-name=${j_name}
 #SBATCH --output=${j_dir}/log/%j.out
