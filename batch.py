@@ -90,6 +90,8 @@ def launch_job(exp_dir, partition, j_name, file, args, q, resource, cpus_per_tas
         # add command to run job script
         f.write(f"bash ${j_dir}/scripts/${j_name}.sh")
 
+    # write job script
+    job_script = os.path.join(j_dir_scripts, f"{j_name}.sh")
 
 def main():
     args = get_args()
