@@ -207,19 +207,17 @@ def launch_job(exp_dir, partition, j_name, file, args, q,
         # activate environment
         f.write(f". /h/$USER/envs/{env}.env\n")
 
-        final_args = args
-
         if not no_save_dir:
-            final_args += f"--save_dir {j_dir}"
+            args += f"--save_dir {j_dir}"
 
         if not no_ckpt:
             # config checkpoint
             f.write("touch /checkpoint/$USER/\\$SLURM_JOB_ID/DELAYPURGE\n")
 
-            final_args += "--ckpt_path=/checkpoint/$USER/\\$SLURM_JOB_ID/ck.pt"
+            args += "--ckpt_path=/checkpoint/$USER/\\$SLURM_JOB_ID/ck.pt"
 
         # launch job
-        f.write(f"python {file} {final_args}")
+        f.write(f"python {file} {args}")
 
     # launch job
     subprocess.run(f"sbatch {slurm_script}", shell=True, check=True)
