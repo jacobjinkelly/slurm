@@ -6,11 +6,15 @@ All scripts are compatible using Python 3.6, and presumably higher versions.
 Some scripts also use bash.
 
 ## Usage
+
+### Setup
 To set up scripts in a new repo `new_repo`, simply run
 ```
 ./setup.sh new_repo
 ```
 
+
+### Configuring Sweeps
 From the new repo, sweeps can be configured by creating a json file.
 See `example.json` for a template.
 
@@ -27,8 +31,9 @@ If the key points to a dictionary, that dictionary can have the following keys s
 - The `values` key can be set to a list of values when `key` is set.
   If `key` and `bool` are not set, then we can just pass in a list directly.
 
-Once the sweep is configured, the job can be launched as follows.
+### Launching Sweeps
 
+Once the sweep is configured, the job can be launched as follows.
 ```
 ./batch.py
 ```
