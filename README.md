@@ -53,6 +53,6 @@ original code it was run with.
 A solution to this would be to clone the entire repo each time
 a job is launched. 
 This would slow down launching a sweep and put unneeded load on the SLURM login node.
-The current solution is to make changes backwards compatible while jobs are in progress
+Instead, the current solution is to make changes backwards compatible while jobs are in progress
 if pulling new updates to the repo is required, or simply not pulling
-new updates.
+new updates until the old jobs are finished.
