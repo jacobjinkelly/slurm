@@ -37,7 +37,7 @@ def get_args():
     return parser.parse_args()
 
 
-def run_cmd(cmd, pipe, shell=True, check=True, capture_output=True, **kwargs):
+def run_and_save_cmd(cmd, pipe, shell=True, check=True, capture_output=True, **kwargs):
     with open(pipe, "w") as f:
         subprocess.run(cmd, stdout=f, stderr=f, shell=shell, check=check, capture_output=capture_output, **kwargs)
 
@@ -52,8 +52,8 @@ def setup(args):
     shutil.copy("param_check.sh", exp_dir)
 
     # record git state
-    run_cmd("git rev-parse HEAD", os.path.join(exp_dir, "commit.state"))
-    run_cmd("git diff", os.path.join(exp_dir, "diff.patch"))
+    run_and_save_cmd("git rev-parse HEAD", os.path.join(exp_dir, "commit.state"))
+    run_and_save_cmd("git diff", os.path.join(exp_dir, "diff.patch"))
 
     return exp_dir
 
