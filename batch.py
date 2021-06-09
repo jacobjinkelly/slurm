@@ -74,8 +74,10 @@ def launch_job(exp_dir, partition, j_name, file, args, q, resource, cpus_per_tas
         f.write(f"#SBATCH --ntasks-per-node={ntasks_per_node}\n")
         f.write(f"#SBATCH --mem={mem}G\n")
         f.write(f"#SBATCH --nodes={nodes}\n")
-        f.write("#SBATCH --exclude=gpu089\n")
         f.write(f"#SBATCH --qos=${q}\n")
+
+        if exclude is not None:
+            f.write(f"#SBATCH --exclude={exclude}\n")
 
         if partition != "cpu":
             f.write(f"#SBATCH --gres=gpu:${resource}")
