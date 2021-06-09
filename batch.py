@@ -27,6 +27,7 @@ def get_args():
 
 
 def setup_dirs(args):
+    # create the directory for the sweep
     exp_dir = os.path.join(args.experiment_dir, datetime.now().strftime("%F-%H-%M-%S"))
     os.makedirs(exp_dir)
 
