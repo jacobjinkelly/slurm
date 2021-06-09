@@ -61,8 +61,8 @@ def parse_config(config_file):
             # sweep of values
             pass
         elif isinstance(args, dict):
-            # more information
-            pass
+            if "bool" in args:
+                assert args["bool"] is True
         else:
             # add the fixed argument
             fixed_args += f"--{arg_name} {args} "  # include a space!

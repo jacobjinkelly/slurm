@@ -2,10 +2,10 @@
   "lr": [1e-2, 1e-3],
   "batch_size": [10, 100],
   "save_best": {
-    "type": "bool"
+    "bool": true
   },
   "early_stopping": {
-    "type": "bool",
+    "bool": true,
     "values": [true, false]
   },
   "data": "mnist",
