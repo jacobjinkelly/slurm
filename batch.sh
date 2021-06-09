@@ -9,15 +9,15 @@ q=$4
 # job name should include the values being swept over
 
 dir=experiments/$(date "+%F-%H-%M-%S")
-mkdir -p $dir/$j_name
+mkdir -p "${dir}"/"${j_name}"
 
 # copy script for checking job sweep
 cp check.sh $dir
 cp param_check.sh $dir
 
 # save git state for reproducibility/debugging
-git rev-parse HEAD > ${dir}/commit.state
-git diff > ${dir}/diff.patch
+git rev-parse HEAD >${dir}/commit.state
+git diff >${dir}/diff.patch
 
 # ./job.sh $dir $partition $j_name $file "" $q
 
@@ -26,7 +26,7 @@ data_args="--data celeba --celeba_drop_infreq 13 --full_test --img_size 64 --img
 # data_args="--data celeba --celeba_drop_infreq 13 --full_test --img_size 64 --img_sigma .01 --unif_init_b --mode cond --model poj --small_mlp --small_mlp_nhidden 128 --n_f 64 --old_multi_gpu"
 # data_args="--data celeba --celeba_drop_infreq 13 --full_test --dset_split_type zero_shot --img_size 64 --img_sigma .01 --mode sup --model poj --small_mlp --small_mlp_nhidden 128 --n_f 64 --multi_gpu"
 # data_args="--data celeba --celeba_drop_infreq 13 --full_test --dset_split_type zero_shot --img_size 64 --img_sigma .01 --unif_init_b --mode cond --model poj --poj_joint --small_mlp --small_mlp_nhidden 128 --n_f 64 --old_multi_gpu"  # TODO: ZERO SHOT SPLIT OLDD MULTI
-# data_args="--data celeba --celeba_drop_infreq 13 --full_test --img_size 64 --img_sigma .01 --mode uncond --model poj --poj_joint --uncond_poj --small_mlp --small_mlp_nhidden 128 --n_f 64"  # uncond 
+# data_args="--data celeba --celeba_drop_infreq 13 --full_test --img_size 64 --img_sigma .01 --mode uncond --model poj --poj_joint --uncond_poj --small_mlp --small_mlp_nhidden 128 --n_f 64"  # uncond
 
 # data_args="--data utzappos --utzappos_drop_infreq 10 --full_test --img_size 64 --img_sigma .01 --mode sup --model poj --small_mlp --small_mlp_nhidden 128 --n_f 64 --old_multi_gpu"
 # data_args="--data utzappos --utzappos_drop_infreq 10 --full_test --img_size 64 --img_sigma .01 --mode cond --model poj --small_mlp --small_mlp_nhidden 128 --n_f 64 --old_multi_gpu"
@@ -57,7 +57,7 @@ data_args="--data celeba --celeba_drop_infreq 13 --full_test --img_size 64 --img
 # opt_args="--batch_size 100 --n_iters 10000000 --warmup_itrs 1000 --lr 1e-4"  # utzappos # TODO: faster?
 
 # opt_args="--batch_size 10 --n_iters 1000000 --warmup_itrs 0 --lr 1e-4"  # TODO: SMALLLL for post-hoc
-opt_args="--batch_size 100 --n_iters 1000000 --warmup_itrs 0 --lr 1e-4"  # utzappos # TODO: NO WARMUP
+opt_args="--batch_size 100 --n_iters 1000000 --warmup_itrs 0 --lr 1e-4"                                                                                                                                                                                                                                                             # utzappos # TODO: NO WARMUP
 
 # opt_args="--batch_size 100 --n_iters 1000000 --warmup_itrs 0 --lr 1e-4 --lr_at 3e-5 --lr_itr_at 23000"  # utzappos # TODO: NO WARMUP
 # opt_args="--batch_size 100 --n_iters 10000000 --warmup_itrs 0 --lr 1e-4 --lr_at 3e-5 --lr_itr_at 8000"  # utzappos # TODO: NO WARMUP, SCHEDULE
@@ -86,10 +86,10 @@ opt_args="--batch_size 100 --n_iters 1000000 --warmup_itrs 0 --lr 1e-4"  # utzap
 # loss_args=""  # mnist  NO PN CONTROL
 # loss_args="--weighted_ce"  # utzappos supervised TODO: weighted CE
 # loss_args=""  # toy
-loss_args="--truncated_bp --bp 1"  # TODO: TRUNCATED
+loss_args="--truncated_bp --bp 1"                                                                                                                                                                                                                                                                                                   # TODO: TRUNCATED
 # loss_args="--truncated_bp --bp 1 --p_control 1 --n_control 1"  # TODO: TRUNCATED PN CONTROL
 # loss_args=""  # utzappos
-# loss_args="--p_control 1 --n_control 1"  # utzappos  TODO: PN CONTROL 
+# loss_args="--p_control 1 --n_control 1"  # utzappos  TODO: PN CONTROL
 
 # log_args="--print_every 5000 --plot_every 5000 --ckpt_every 5000 --return_steps 1 --plot_uncond_fresh"  # mwa
 # log_args="--print_every 1000 --plot_every 5000 --ckpt_every 1000 --return_steps 1"  # celeba
@@ -115,7 +115,7 @@ loss_args="--truncated_bp --bp 1"  # TODO: TRUNCATED
 # log_args="--print_every 1 --plot_every 1 --just_sampling --ckpt_every 100000007 --return_steps 1 --plot_uncond_fresh --plot_cond_buffer --plot_cond_continue_buffer --plot_cond_marginalize --plot_cond_continue_buffer_uncond --eval_filter_to_tst_combos"
 # log_args="--print_every 1 --plot_every 1 --just_sampling --ckpt_every 100000007 --return_steps 1 --plot_uncond_fresh --plot_cond_buffer --plot_cond_continue_buffer --plot_cond_marginalize --plot_cond_filter 10"
 
-log_args="--print_every 1 --plot_every 1 --just_sampling --ckpt_every 100000007 --plot_cond_continue_buffer --plot_cond_marginalize --eval_filter_to_tst_combos --eval_cond_acc" # EVAL COND ACC
+log_args="--print_every 1 --plot_every 1 --just_sampling --ckpt_every 100000007 --plot_cond_continue_buffer --plot_cond_marginalize --eval_filter_to_tst_combos --eval_cond_acc"                                                                                                                                                    # EVAL COND ACC
 
 # model_args="--ema .99 --sampling pcd --interleave --test_k 200 --gibbs_k_steps 10"  # mwa (interleave)
 # model_args="--ema .99 --sampling pcd --test_k 200"  # mwa (uncond)
@@ -173,7 +173,7 @@ log_args="--print_every 1 --plot_every 1 --just_sampling --ckpt_every 100000007 
 
 # model_args="--ema .999 --sampling pcd --test_k 120 --test_n_steps 100 --yd_buffer replay --interleave --only_transform_buffer --transform --gibbs_k_steps 2 --test_gibbs_n_steps 1 --clamp_samples --clamp_data --clip_grad_norm .5 --eval experiments/2021-05-19-19-19-32/gp_40_1_20_.001_1_0_dis_2_.3/recent_026000.pt"  # celeba TUNE ALL
 
-model_args="--ema .999 --sampling pcd --test_k 120 --test_n_steps 100 --yd_buffer replay --interleave --only_transform_buffer --transform --gibbs_k_steps 1 --test_gibbs_n_steps 1 --clamp_samples --clamp_data --clip_grad_norm .5 --eval experiments/2021-05-28-14-56-39/j_40_1_40_.001_1_1_dis_2_.3_600000_120_2/best_028000.pt"  # POJ model
+model_args="--ema .999 --sampling pcd --test_k 120 --test_n_steps 100 --yd_buffer replay --interleave --only_transform_buffer --transform --gibbs_k_steps 1 --test_gibbs_n_steps 1 --clamp_samples --clamp_data --clip_grad_norm .5 --eval experiments/2021-05-28-14-56-39/j_40_1_40_.001_1_1_dis_2_.3_600000_120_2/best_028000.pt" # POJ model
 
 # model_args="--ema .999 --sampling pcd --test_k 60 --test_n_steps 60 --yd_buffer reservoir --interleave --utzappos_blur_transform --transform --gibbs_k_steps 1 --test_gibbs_n_steps 1 --clamp_samples --clamp_data --clip_grad_norm .5 --eval experiments/2021-05-30-11-31-16/z_40_1_40_.001_1_1_dis_2_.3_600000_120_2/recent_021000.pt"  # POJ UTZAPPOS MODEL
 
@@ -189,96 +189,78 @@ fixed_args="${data_args} ${log_args} ${opt_args} ${loss_args} ${model_args}"
 # for k in 40  # dsprites
 # for k in 40  # celeba
 # for k in 60  # celeba  TODO: MOREE
-for k in 40  # utzappos
-# for k in 40  # mwa
-do
-    for n_steps in 1  # normal
+for k in 40; do # utzappos
+  # for k in 40  # mwa
+  for n_steps in 1; do # normal
     # for n_steps in 1 2 4  # sweep
-    do
-        # for gibbs_steps in 1
-        # for gibbs_steps in 4  # interleave (toy)
-        for gibbs_steps in 20  # interleave (toy)  # TODO: MOREEE
-        # for gibbs_steps in 4  # MORE GIBBS interleave (dsprites) INTERLEAVE
-        # for gibbs_steps in 40  # interleave (dsprites) INTERLEAVE
-        # for gibbs_steps in 1  # (dsprites) NOOOO INTERLEAVE
-        # for gibbs_steps in 40  # interleave (mnist)
-        # for gibbs_steps in 40  # interleave (celeba)
-        # for gibbs_steps in 10  # interleave (celeba) TODO: MOREE
-        # for gibbs_steps in 40  # interleave (utzappos)
-        # for gibbs_steps in 8  # TODO: SET THIS IF LESS INTERLEAVE (utzappos)
-        # for gibbs_steps in 5  # TODO: SET THIS IF LESS INTERLEAVE (utzappos)
-        # for gibbs_steps in 4  # interleave (mwa)
-        do
-            # for sigma in .1  # for circles
-            # for sigma in .03  # for rings
-            # for sigma in .1 .03 .01 .003 .001 .0003 .0001  # for rings (sweep w/ new hyperparams)
-            # for sigma in .1  # 8gaussians
-            # for sigma in .01 .003  # for mnist (final)
-            # for sigma in .03 .01 .003 .001  # dsprites (sweep)
-            # for sigma in .03 .01 .003 .001  # celeba (sweep)
-            # for sigma in .01 .001  # celeba/utzappos (sweep)
-            # for sigma in .01  # celeba/utzappos (sweep)  # TODO: TTEMP
-            for sigma in .001  # celeba/utzappos (sweep)  # TODO: CLASSIFICATION BOI
-            # for sigma in .01 .003 .001  # mnist (sweep)
-            # for sigma in .001  # celeba (yilundu)
-            do
-                # for step_size in -1  # for circles
-                # for step_size in .03 # for circles (tempered)
-                # for step_size in .01  # for rings
-                # for step_size in .1 .03 .01 .003 .001  # for rings (sweep w/ new hyperparams)
-                # for step_size in .01  # 8gaussians 
-                # for step_size in 10 3 1  # for mnist (final)
-                # for step_size in 100 30 10 3 1 .3 # dsprites (sweep)
-                # for step_size in 10 3 1 # celeba/utzappos (reduced sweep)
-                # for step_size in 3 1 # celeba/utzappos (reduced sweep)  # TODO: SMALL
-                for step_size in 1 # celeba/utzappos (reduced sweep)  # TODO: SINGLE
-                # for step_size in 3 # TODO: ad hoc
-                # for step_size in 300 100 30  # big boi steps 
-                # for step_size in -1  # TODO: CLASSIFICATION BOI
-                # for step_size in 10 3 1  # mnist (new sweep boi)
-                do
-                    # for p_y_x in .1 .3 1  # TODO: for POJ BUDDY
-                    for p_y_x in 0
-                    # for p_y_x in 1  # TODO: for classification BOIIIII (OR POJ W NO JOINT)
-                    do
-                        # cts can give good acc but unstable
-                        for first_gibbs in dis
-                        do
-                            for temp in 2
-                            do
-                                # for kl in .0001 .0003 .001 .003 .01 .03 .1 .3 1 3 10
-                                # for kl in 0 .3 1 3 10 30
-                                # for kl in 0 .3  # TODO: POJ and EBM BUD
-                                for kl in .3
-                                # for kl in 0  # TODO: for classification BOIII
-                                do
-                                    # for test_gibbs_steps in 120 240 360
-                                    for test_gibbs_steps in 120
-                                    # for test_gibbs_steps in 60
-                                    do
-                                        for transform_every in 60
-                                        # for transform_every in 600000
-                                        do
-                                            # for test_gibbs_k_steps in 1 2 4 8
-                                            for test_gibbs_k_steps in 2
-                                            # for test_gibbs_k_steps in 1
-                                            do
-                                                sgld_args="--k ${k} --n_steps ${n_steps} --sigma ${sigma} --step_size ${step_size}"
-                                                steps_args="--test_gibbs_steps ${test_gibbs_steps} --test_gibbs_k_steps ${test_gibbs_k_steps}"
-                                                steps_jname=${transform_every}_${test_gibbs_steps}_${test_gibbs_k_steps}
-                                                sweep_args="--gibbs_steps ${gibbs_steps} --p_y_x ${p_y_x} --first_gibbs ${first_gibbs} --temp ${temp} --kl ${kl} --transform_every ${transform_every}"
-                                                full_jname=${j_name}_${k}_${n_steps}_${gibbs_steps}_${sigma}_${step_size}_${p_y_x}_${first_gibbs}_${temp}_${kl}_${steps_jname}
-                                                ./job.sh $dir $partition ${full_jname} $file "${fixed_args} ${sgld_args} ${sweep_args} ${steps_args}" $q
-                                            done
-                                        done
-                                    done
-                                done 
-                            done
-                        done
+    # for gibbs_steps in 1
+    # for gibbs_steps in 4  # interleave (toy)
+    for gibbs_steps in 20; do # interleave (toy)  # TODO: MOREEE
+      # for gibbs_steps in 4  # MORE GIBBS interleave (dsprites) INTERLEAVE
+      # for gibbs_steps in 40  # interleave (dsprites) INTERLEAVE
+      # for gibbs_steps in 1  # (dsprites) NOOOO INTERLEAVE
+      # for gibbs_steps in 40  # interleave (mnist)
+      # for gibbs_steps in 40  # interleave (celeba)
+      # for gibbs_steps in 10  # interleave (celeba) TODO: MOREE
+      # for gibbs_steps in 40  # interleave (utzappos)
+      # for gibbs_steps in 8  # TODO: SET THIS IF LESS INTERLEAVE (utzappos)
+      # for gibbs_steps in 5  # TODO: SET THIS IF LESS INTERLEAVE (utzappos)
+      # for gibbs_steps in 4  # interleave (mwa)
+      # for sigma in .1  # for circles
+      # for sigma in .03  # for rings
+      # for sigma in .1 .03 .01 .003 .001 .0003 .0001  # for rings (sweep w/ new hyperparams)
+      # for sigma in .1  # 8gaussians
+      # for sigma in .01 .003  # for mnist (final)
+      # for sigma in .03 .01 .003 .001  # dsprites (sweep)
+      # for sigma in .03 .01 .003 .001  # celeba (sweep)
+      # for sigma in .01 .001  # celeba/utzappos (sweep)
+      # for sigma in .01  # celeba/utzappos (sweep)  # TODO: TTEMP
+      for sigma in .001; do # celeba/utzappos (sweep)  # TODO: CLASSIFICATION BOI
+        # for sigma in .01 .003 .001  # mnist (sweep)
+        # for sigma in .001  # celeba (yilundu)
+        # for step_size in -1  # for circles
+        # for step_size in .03 # for circles (tempered)
+        # for step_size in .01  # for rings
+        # for step_size in .1 .03 .01 .003 .001  # for rings (sweep w/ new hyperparams)
+        # for step_size in .01  # 8gaussians
+        # for step_size in 10 3 1  # for mnist (final)
+        # for step_size in 100 30 10 3 1 .3 # dsprites (sweep)
+        # for step_size in 10 3 1 # celeba/utzappos (reduced sweep)
+        # for step_size in 3 1 # celeba/utzappos (reduced sweep)  # TODO: SMALL
+        for step_size in 1; do # celeba/utzappos (reduced sweep)  # TODO: SINGLE
+          # for step_size in 3 # TODO: ad hoc
+          # for step_size in 300 100 30  # big boi steps
+          # for step_size in -1  # TODO: CLASSIFICATION BOI
+          # for step_size in 10 3 1  # mnist (new sweep boi)
+          # for p_y_x in .1 .3 1  # TODO: for POJ BUDDY
+          for p_y_x in 0; do # for p_y_x in 1  # TODO: for classification BOIIIII (OR POJ W NO JOINT)
+            # cts can give good acc but unstable
+            for first_gibbs in dis; do
+              for temp in 2; do
+                # for kl in .0001 .0003 .001 .003 .01 .03 .1 .3 1 3 10
+                # for kl in 0 .3 1 3 10 30
+                # for kl in 0 .3  # TODO: POJ and EBM BUD
+                for kl in .3; do # for kl in 0  # TODO: for classification BOIII
+                  # for test_gibbs_steps in 120 240 360
+                  for test_gibbs_steps in 120; do # for test_gibbs_steps in 60
+                    for transform_every in 60; do # for transform_every in 600000
+                      # for test_gibbs_k_steps in 1 2 4 8
+                      for test_gibbs_k_steps in 2; do # for test_gibbs_k_steps in 1
+                        sgld_args="--k ${k} --n_steps ${n_steps} --sigma ${sigma} --step_size ${step_size}"
+                        steps_args="--test_gibbs_steps ${test_gibbs_steps} --test_gibbs_k_steps ${test_gibbs_k_steps}"
+                        steps_jname=${transform_every}_${test_gibbs_steps}_${test_gibbs_k_steps}
+                        sweep_args="--gibbs_steps ${gibbs_steps} --p_y_x ${p_y_x} --first_gibbs ${first_gibbs} --temp ${temp} --kl ${kl} --transform_every ${transform_every}"
+                        full_jname=${j_name}_${k}_${n_steps}_${gibbs_steps}_${sigma}_${step_size}_${p_y_x}_${first_gibbs}_${temp}_${kl}_${steps_jname}
+                        ./job.sh $dir $partition ${full_jname} $file "${fixed_args} ${sgld_args} ${sweep_args} ${steps_args}" $q
+                      done
                     done
+                  done
                 done
+              done
             done
+          done
         done
+      done
     done
+  done
 done
-
