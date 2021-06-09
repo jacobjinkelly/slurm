@@ -120,7 +120,7 @@ def get_j_name(sweep_arg, sweep_keys):
     j_name_args = []
     for arg_name, arg in sweep_arg:
         if arg_name in sweep_keys:
-            for key_arg_name in sweep_keys[arg_name]:
+            for key_arg_name in sorted(sweep_keys[arg_name]):
                 j_name_args.append([get_single_j_name(*sweep_key_pair) for sweep_key_pair in key_arg_name])
         else:
             j_name_args.append(get_single_j_name(arg_name, arg))
