@@ -115,6 +115,10 @@ def parse_config(config_file):
     return fixed_args, product(sweep_args), sweep_keys
 
 
+def get_single_j_name(arg_name, arg):
+    return f"{arg_name}_{arg}"
+
+
 def get_j_name(sweep_arg, sweep_keys):
     j_name_args = []
     for arg_name, arg in sweep_arg:
@@ -123,7 +127,7 @@ def get_j_name(sweep_arg, sweep_keys):
                 key_arg_name, key_arg = s[arg]
                 j_name_args.append(f"{key_arg_name}_{key_arg}")
         else:
-            j_name_args.append(f"{arg_name}_{arg}")
+            j_name_args.append(get_single_j_name(arg_name, arg))
     return "_".join(j_name_args)
 
 
