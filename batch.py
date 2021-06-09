@@ -95,17 +95,10 @@ def launch_job(exp_dir, partition, j_name, file, args, q, resource, cpus_per_tas
     with open(job_script, "w") as f:
         f.write("#!/bin/bash\n")
 
-        # configure SLURM
+        # activate environment
         f.write(". /h/jkelly/envs/torch.env\n")
 
-        if exclude is not None:
-            f.write(f"#SBATCH --exclude={exclude.join(',')}\n")
-
-        if partition != "cpu":
-            f.write(f"#SBATCH --gres=gpu:${resource}")
-
-        if q == "deadline":
-            f.write("#SBATCH --account=deadline")
+        f.write("touch /checkpoint/$USER/\$SLURM_JOB_ID/DELAYPURGE\n")
 
         # add command to run job script
         f.write(f"bash ${j_dir}/scripts/${j_name}.sh")
