@@ -17,7 +17,15 @@ See `example.json` for a template.
 Each key in the json file corresponds to a command line argument.
 The key can point to a list of values to be swept, a single value to be set, 
 or a dictionary.
-If the key
+If the key points to a dictionary, that dictionary can have the following keys set.
+- The `bool` key can be set to True, 
+  meaning the command line argument is of the form `--arg` instead of `--arg value`.
+- The `key` flag can be set to a string. Note, this key string CANNOT conflict with 
+  any command line arguments being configured in the sweep.
+  This option can be used to sweep multiple hyperparameters together.
+  For example, we may want to set `--dropout 0` if `--batchnorm`.
+- The `values` key can be set to a list of values when `key` is set.
+  If `key` and `bool` are not set, then we can just pass in a list directly.
 
 Once the sweep is configured, the job can be launched as follows.
 
