@@ -192,13 +192,13 @@ def launch_job(exp_dir, partition, j_name, file, args, q,
             f.write(f"#SBATCH --exclude={','.join(exclude)}\n")
 
         if partition != "cpu":
-            f.write(f"#SBATCH --gres=gpu:{resource}")
+            f.write(f"#SBATCH --gres=gpu:{resource}\n")
 
         if q == "deadline":
-            f.write("#SBATCH --account=deadline")
+            f.write("#SBATCH --account=deadline\n")
 
         # add command to run job script
-        f.write(f"bash {j_dir}/scripts/{j_name}.sh")
+        f.write(f"bash {j_dir}/scripts/{j_name}.sh\n")
 
     # write job script
     job_script = os.path.join(j_dir_scripts, f"{j_name}.sh")
@@ -218,10 +218,10 @@ def launch_job(exp_dir, partition, j_name, file, args, q,
             args += "--ckpt_path=/checkpoint/$USER/\\$SLURM_JOB_ID/ck.pt"
 
         # launch job
-        f.write(f"python {file} {args}")
+        f.write(f"python {file} {args}\n")
 
     # launch job
-    # subprocess.run(f"sbatch {slurm_script}", shell=True, check=True)
+    subprocess.run(f"sbatch {slurm_script}", shell=True, check=True)
 
 
 def main():
