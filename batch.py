@@ -29,7 +29,7 @@ def get_args():
 def main():
     args = get_args()
 
-    exp_dir = os.path.join("experiments", datetime.now().strftime("%F-%H-%M-%S"))
+    exp_dir = os.path.join(args.experiment_dir, datetime.now().strftime("%F-%H-%M-%S"))
     os.makedirs(exp_dir)
 
     print(exp_dir)
