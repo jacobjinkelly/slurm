@@ -96,15 +96,7 @@ def launch_job(exp_dir, partition, j_name, file, args, q, resource, cpus_per_tas
         f.write("#!/bin/bash\n")
 
         # configure SLURM
-        f.write(f"#SBATCH --job-name={j_name}\n")
-        f.write(f"#SBATCH --output={j_dir_log}/%j.out\n")
-        f.write(f"#SBATCH --error={j_dir_log}/%j.err\n")
-        f.write(f"#SBATCH --partition={partition}\n")
-        f.write(f"#SBATCH --cpus-per-task={cpus_per_task}\n")
-        f.write(f"#SBATCH --ntasks-per-node={ntasks_per_node}\n")
-        f.write(f"#SBATCH --mem={mem}G\n")
-        f.write(f"#SBATCH --nodes={nodes}\n")
-        f.write(f"#SBATCH --qos=${q}\n")
+        f.write(". /h/jkelly/envs/torch.env\n")
 
         if exclude is not None:
             f.write(f"#SBATCH --exclude={exclude.join(',')}\n")
