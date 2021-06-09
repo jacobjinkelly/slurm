@@ -14,6 +14,7 @@ def main():
 
     parser.add_argument("--partition", type=str, default="t4v2")
     parser.add_argument("--j_name", type=str, required=True)
+    parser.add_argument("--file", type=str, required=True)
 
 
 if __name__ == "__main__":
