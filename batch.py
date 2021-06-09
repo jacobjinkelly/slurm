@@ -123,8 +123,8 @@ def get_j_name(sweep_arg, sweep_keys):
     j_name_args = []
     for arg_name, arg in sweep_arg:
         if arg_name in sweep_keys:
-            for s in sweep_keys[arg_name]:
-                j_name_args.append(get_single_j_name(*s[arg]))
+            for sweep_key_pairs in sweep_keys[arg_name]:
+                j_name_args.append(get_single_j_name(*sweep_key_pairs[arg]))
         else:
             j_name_args.append(get_single_j_name(arg_name, arg))
     return "_".join(j_name_args)
@@ -141,8 +141,8 @@ def get_j_args(sweep_arg, sweep_keys):
     j_args = []
     for arg_name, arg in sweep_arg:
         if arg_name in sweep_keys:
-            for s in sweep_keys[arg_name]:
-                j_args.append(get_single_j_arg(*s[arg]))
+            for sweep_key_pairs in sweep_keys[arg_name]:
+                j_args.append(get_single_j_arg(*sweep_key_pairs[arg]))
         else:
             j_args.append(get_single_j_arg(arg_name, arg))
     return " ".join(j_args)
