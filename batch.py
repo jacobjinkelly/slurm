@@ -55,6 +55,8 @@ def parse_config(config_file):
     with open(config_file, "r") as f:
         config = json.load(f)
 
+    # for fixed args, we just need to return a string for argparse to parse later on
+
     fixed_args = ""
     for arg_name, args in config.items():
         if isinstance(args, list):
