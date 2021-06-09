@@ -1,0 +1,21 @@
+{
+  "lr": [1e-2, 1e-3],
+  "batch_size": [10, 100],
+  "save_best": {
+    "type": "bool"
+  },
+  "early_stopping": {
+    "type": "bool",
+    "values": [true, false]
+  },
+  "data": "mnist",
+  "n_iters": 10000,
+  "sigma": {
+    "key": "temp",
+    "values": [0.01, 0.001]
+  },
+  "step_size": {
+    "key": "temp",
+    "values": [3, 1]
+  }
+}
