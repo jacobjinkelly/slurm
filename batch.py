@@ -27,6 +27,11 @@ def get_args():
     return parser.parse_args()
 
 
+def run_cmd(cmd, pipe, shell=True, check=True, capture_output=True, **kwargs):
+    with open(pipe, "w") as f:
+        subprocess.run(cmd, stdout=f, stderr=f, shell=shell, check=check, capture_output=capture_output, **kwargs)
+
+
 def setup_dirs(args):
     # create the directory for the sweep
     exp_dir = os.path.join(args.experiment_dir, datetime.now().strftime("%F-%H-%M-%S"))
@@ -37,20 +42,12 @@ def setup_dirs(args):
     shutil.copy("param_check.sh", exp_dir)
 
     # record git state
-    subprocess_kwargs = {
-        "shell": True,
-        "check": True,
-        "capture_output": True
-    }
     git_commit_state_file = os.path.join(exp_dir, "commit.state")
     with open(git_commit_state_file, "w") as f:
         subprocess.run("git rev-parse HEAD", stdout=f, stderr=f, **subprocess_kwargs)
     git_diff_patch_file = os.path.join(exp_dir, "diff.patch")
-    command = subprocess.run(['ls', '-l'], capture_output=True)
-
-    sys.stdout.buffer.write(command.stdout)
-    sys.stderr.buffer.write(command.stderr)
-    sys.exit(command.returncode)
+    with open(git_diff_patch_file, "w") as f:
+        subprocess.run("git diff", stdout=f, stderr=f, **subprocess_kwargs)
 
 
 def main():
