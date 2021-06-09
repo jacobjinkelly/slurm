@@ -58,11 +58,13 @@ def launch_job(exp_dir, partition, j_name, file, args, q, resource, cpus_per_tas
     os.makedirs(j_dir_scripts)
     os.makedirs(j_dir_log)
 
+    # write scripts
+    # explicit \n is best according to
+    # https://stackoverflow.com/questions/6159900/correct-way-to-write-line-to-file
+
     # write SLURM script
     slurm_script = os.path.join(j_dir_scripts, f"{j_name}.slrm")
     with open(slurm_script, "w") as f:
-        # explicit \n is best according to
-        # https://stackoverflow.com/questions/6159900/correct-way-to-write-line-to-file
 
         # configure SLURM
         f.write("#!/bin/bash\n")
