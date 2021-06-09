@@ -48,8 +48,8 @@ def setup(args):
     os.makedirs(exp_dir)
 
     # copy files for checking sweeps
-    shutil.copy("check.sh", exp_dir)
-    shutil.copy("param_check.sh", exp_dir)
+    shutil.copy("check.py", exp_dir)
+    shutil.copy(args.config, exp_dir)
 
     # record git state
     run_and_save_cmd("git rev-parse HEAD", os.path.join(exp_dir, "commit.state"))
