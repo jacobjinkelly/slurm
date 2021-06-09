@@ -132,7 +132,10 @@ def get_j_name(sweep_arg, sweep_keys):
 
 def get_single_j_arg(arg_name, arg):
     if isinstance(arg, bool):
-        return f"--{arg_name}"
+        if arg is True:
+            return f"--{arg_name}"
+        else:
+            return ""
     else:
         return f"--{arg_name} {arg}"
 
