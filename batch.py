@@ -115,6 +115,15 @@ def parse_config(config_file):
     return fixed_args, product(sweep_args), sweep_keys
 
 
+def get_j_name(sweep_arg):
+    return "_".join([f"{arg_name}_{arg}" for arg_name, arg in sweep_arg])
+
+
+def get_j_args(sweep_arg):
+    return " ".join([f"--{arg_name}" if isinstance(arg, bool) else f"--{arg_name} {arg}"
+                     for arg_name, arg in sweep_arg])
+
+
 def launch_sweep(args):
     """
     Launch a sweep of jobs.
@@ -122,9 +131,8 @@ def launch_sweep(args):
     fixed_args, sweep_args, sweep_keys = parse_config(args.config)
 
     for sweep_arg in sweep_args:
-        j_name = "_".join([f"{arg_name}_{arg}" for arg_name, arg in sweep_arg])
-        j_args = fixed_args + " ".join([f"--{arg_name}" if isinstance(arg, bool) else f"--{arg_name} {arg}"
-                                        for arg_name, arg in sweep_arg])
+        j_name = get_j_name(sweep_arg)
+        j_args = fixed_args + get_j_args(sweep_arg)
         launch_job(args.exp_dir, args.partition, j_name, args.file, j_args, args.q,
                    args.resource, args.cpus_per_task, args.mem, args.exclude, args.ntasks_per_node, args.nodes)
 
