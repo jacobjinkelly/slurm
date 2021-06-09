@@ -102,7 +102,7 @@ def parse_config(config_file):
             if isinstance(args, dict) and "key" in args and args["key"] == sweep_key:
                 sweep_keys_args[sweep_key].append([(arg_name, arg) for arg in args["values"]])
 
-    for sweep_key in sweep_keys:
+    for sweep_key in sorted(sweep_keys):
         try:
             sweep_key_len, = set(map(len, sweep_keys_args[sweep_key]))
         except ValueError:
