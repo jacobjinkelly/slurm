@@ -31,7 +31,7 @@ def get_args():
     parser.add_argument("--no_save_dir", action="store_true", default=False)
     parser.add_argument("--no_ckpt", action="store_true", default=False)
     parser.add_argument("--resource", type=int, default=1)
-    parser.add_argument("--cpus_per_task", type=int, default=2)
+    parser.add_argument("--cpus_per_task", type=int, default=1)
     parser.add_argument("--mem", type=int, default=16)
     parser.add_argument("--exclude", type=str, default=None)
     parser.add_argument("--ntasks_per_node", type=int, default=1)
