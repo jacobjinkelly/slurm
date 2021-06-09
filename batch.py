@@ -31,6 +31,7 @@ def setup_dirs(args):
     exp_dir = os.path.join(args.experiment_dir, datetime.now().strftime("%F-%H-%M-%S"))
     os.makedirs(exp_dir)
 
+    # copy files for checking sweeps
     shutil.copy("check.sh", exp_dir)
     shutil.copy("param_check.sh", exp_dir)
 
