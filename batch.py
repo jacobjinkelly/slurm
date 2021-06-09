@@ -77,6 +77,9 @@ def launch_job(exp_dir, partition, j_name, file, args, q, resource):
         if partition != "cpu":
             f.write(f"#SBATCH --gres=gpu:${resource}")
 
+        if q == "deadline":
+            f.write("#SBATCH --account=deadline")
+
 
 def main():
     args = get_args()
