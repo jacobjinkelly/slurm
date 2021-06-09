@@ -5,6 +5,7 @@ import os
 import shutil
 import sys
 import subprocess
+import json
 from datetime import datetime
 
 assert sys.version_info.major == 3
@@ -47,11 +48,12 @@ def setup(args):
     run_cmd("git diff", os.path.join(exp_dir, "diff.patch"))
 
 
-def parse_config(config):
+def parse_config(config_file):
     """
     Parse configuration file for fixed and sweep job hyperparamters.
     """
-    pass
+    with open(config_file, "r") as f:
+        config = json.load(f)
 
 
 def launch_sweep(args):
