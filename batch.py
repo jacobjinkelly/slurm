@@ -57,7 +57,9 @@ def launch_job(exp_dir, partition, j_name, file, args, q, resource):
     os.makedirs(j_dir_scripts)
     os.makedirs(j_dir_log)
 
-    # configure SLURM options
+    # write SLURM script
+    slurm_script = os.path.join(j_dir_scripts, f"{j_name}.slrm")
+    with open()
 
 
 def main():
