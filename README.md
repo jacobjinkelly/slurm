@@ -24,7 +24,7 @@ or a dictionary.
 If the key points to a dictionary, that dictionary can have the following keys:
 - `bool` can be set to True, 
   meaning the command line argument is of the form `--arg` instead of `--arg value`.
-- The `key` flag can be set to a string. Note, this key string CANNOT conflict with 
+- `key` can be set to a string. Note, this key string CANNOT conflict with 
   any command line arguments being configured in the sweep.
   This option can be used to sweep multiple hyperparameters together.
   For example, we may want to set `--dropout 0` if `--batchnorm`.
