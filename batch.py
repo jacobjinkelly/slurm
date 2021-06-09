@@ -149,7 +149,7 @@ def launch_sweep(args):
     fixed_args, sweep_args, sweep_keys = parse_config(args.config)
 
     for sweep_arg in sweep_args:
-        j_name = get_j_name(sweep_arg, sweep_keys)
+        j_name = "_".join([args.j_name, get_j_name(sweep_arg, sweep_keys)])
         j_args = fixed_args + get_j_args(sweep_arg, sweep_keys)
         launch_job(args.exp_dir, args.partition, j_name, args.file, j_args, args.q,
                    args.no_save_dir, args.no_ckpt, args.env, args.resource, args.cpus_per_task, args.mem, args.exclude,
@@ -221,7 +221,7 @@ def launch_job(exp_dir, partition, j_name, file, args, q,
         f.write(f"python {file} {args}")
 
     # launch job
-    subprocess.run(f"sbatch {slurm_script}", shell=True, check=True)
+    # subprocess.run(f"sbatch {slurm_script}", shell=True, check=True)
 
 
 def main():
