@@ -72,7 +72,7 @@ def launch_job(exp_dir, partition, j_name, file, args, q, resource):
         f.write("#SBATCH --mem=$((64))G\n")
         f.write("#SBATCH --nodes=1\n")
         f.write("#SBATCH --exclude=gpu089\n")
-        f.write("#SBATCH --qos=${q}\n")
+        f.write(f"#SBATCH --qos=${q}\n")
 
 
 def main():
