@@ -1,5 +1,5 @@
 # Cluster
-Scripts for launching sweeps on SLURM. Modified from [nng555/cluster_examples](https://github.com/nng555/cluster_examples).
+Scripts for launching sweeps on SLURM cluster. Originally inspired by [nng555/cluster_examples](https://github.com/nng555/cluster_examples).
 
 ## Requirements
 All scripts are compatible using Python 3.6, and presumably higher versions. 
