@@ -46,6 +46,13 @@ def setup(args):
     run_cmd("git diff", os.path.join(exp_dir, "diff.patch"))
 
 
+def parse_config():
+    """
+    Parse configuration file for fixed and sweep job hyperparamters.
+    """
+    pass
+
+
 def launch_sweep(args):
     """
     Launch a sweep of jobs.
