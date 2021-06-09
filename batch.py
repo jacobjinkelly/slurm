@@ -38,9 +38,9 @@ def get_args():
     return parser.parse_args()
 
 
-def run_and_save_cmd(cmd, pipe, shell=True, check=True, capture_output=True, **kwargs):
+def run_and_save_cmd(cmd, pipe, shell=True, check=True, **kwargs):
     with open(pipe, "w") as f:
-        subprocess.run(cmd, stdout=f, stderr=f, shell=shell, check=check, capture_output=capture_output, **kwargs)
+        subprocess.run(cmd, stdout=f, stderr=f, shell=shell, check=check, **kwargs)
 
 
 def setup(args):
