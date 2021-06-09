@@ -77,7 +77,7 @@ def launch_job(exp_dir, partition, j_name, file, args, q, resource, cpus_per_tas
         f.write(f"#SBATCH --qos=${q}\n")
 
         if exclude is not None:
-            f.write(f"#SBATCH --exclude={exclude}\n")
+            f.write(f"#SBATCH --exclude={exclude.join(',')}\n")
 
         if partition != "cpu":
             f.write(f"#SBATCH --gres=gpu:${resource}")
