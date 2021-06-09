@@ -52,8 +52,7 @@ When the preempted job is relaunched it will run the newly updated code, and not
 original code it was run with. 
 A solution to this would be to clone the entire repo each time
 a job is launched. 
-This would slow down launching a sweep and put unneeded work on the login node by cloning
-the repo many times.
+This would slow down launching a sweep and put unneeded load on the SLURM login node.
 The current solution is to make changes backwards compatible while jobs are in progress
 if pulling new updates to the repo is required, or simply not pulling
 new updates.
