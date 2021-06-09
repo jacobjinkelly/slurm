@@ -96,7 +96,7 @@ def parse_config(config_file):
             # add the fixed argument
             fixed_args += f"--{arg_name} {args} "  # include a space!
 
-    sweep_keys_args = defaultdict(list)
+    sweep_keys_args = defaultdict(lambda: defaultdict(list))
     for sweep_key in sweep_keys:
         for arg_name, args in config.items():
             if isinstance(args, dict) and "key" in args and args["key"] == sweep_key:
