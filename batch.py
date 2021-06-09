@@ -8,8 +8,8 @@ import subprocess
 import sys
 from collections import defaultdict
 from datetime import datetime
-from itertools import product
 from functools import partial
+from itertools import product
 
 assert sys.version_info.major == 3
 assert sys.version_info.minor >= 6
