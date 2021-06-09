@@ -24,7 +24,7 @@ def get_args():
 def main():
     args = get_args()
 
-    exp_dir = os.path.join("experiments", date.today().strftime("+%F-%H-%M-%S"))
+    exp_dir = os.path.join("experiments", date.today().strftime("%F-%H-%M-%S"))
 
     print(exp_dir)
 
