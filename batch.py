@@ -68,6 +68,7 @@ def launch_job(exp_dir, partition, j_name, file, args, q, resource):
         f.write(f"#SBATCH --error=${j_dir_log}/%j.err\n")
         f.write(f"#SBATCH --partition=${partition}\n")
         f.write("#SBATCH --cpus-per-task=$((4))\n")
+        f.write("#SBATCH --ntasks-per-node=1\n")
 
 
 def main():
