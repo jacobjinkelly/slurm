@@ -61,10 +61,11 @@ def parse_config(config_file):
     # that way we can put the argument names in the job name
 
     fixed_args = ""
+    sweep_args = []
     for arg_name, args in config.items():
         if isinstance(args, list):
             # sweep of values
-            pass
+            sweep_args.extend([f"--{arg_name} {arg}" for arg in args])
         elif isinstance(args, dict):
             if "bool" in args:
                 # we have a bool argument that has no arg to be passed in with it
