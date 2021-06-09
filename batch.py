@@ -21,7 +21,6 @@ def get_args():
     parser.add_argument("-p", "--partition", type=str, required=True)
     parser.add_argument("-j", "--j_name", type=str, required=True)
     parser.add_argument("-f", "--file", type=str, required=True)
-    parser.add_argument("-a", "--args", type=str)
     parser.add_argument("-q", "--q", type=str, required=True)
     parser.add_argument("-c", "--config", type=str, required=True)
 
