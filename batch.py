@@ -62,7 +62,8 @@ def launch_job(exp_dir, partition, j_name, file, args, q, resource):
     with open(slurm_script, "w") as f:
         f.write("#!/bin/bash\n")
         f.write(f"#SBATCH --job-name=${j_name}\n")
-        f.write(f"#SBATCH --output=${j_dir}/log/%j.out\n")
+        f.write(f"#SBATCH --output=${j_dir_log}/%j.out\n")
+        f.write(f"#SBATCH --error=${j_dir_log}/%j.err\n")
 
 
 def main():
