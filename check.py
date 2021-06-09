@@ -26,7 +26,10 @@ def main():
     for log_file in glob(f"*{args.substr}/{args.file}"):
         with open(log_file, "r") as f:
             line = f.readlines()[args.line]
-            print(f"{line}\t{log_file}")
+            if args.name:
+                print(f"{line}\t{log_file}")
+            else:
+                print(line)
 
 
 if __name__ == "__main__":
