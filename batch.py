@@ -65,7 +65,7 @@ def parse_config(config_file):
     for arg_name, args in config.items():
         if isinstance(args, list):
             # sweep of values
-            sweep_args.extend([f"--{arg_name} {arg}" for arg in args])
+            sweep_args.extend([(arg_name, arg) for arg in args])
         elif isinstance(args, dict):
             if "bool" in args:
                 # we have a bool argument that has no arg to be passed in with it
