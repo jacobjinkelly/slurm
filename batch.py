@@ -131,7 +131,9 @@ def get_j_args(sweep_arg, sweep_keys):
     j_args = []
     for arg_name, arg in sweep_arg:
         if arg_name in sweep_keys:
-            pass
+            for s in sweep_keys[arg_name]:
+                key_arg_name, key_arg = s[arg]
+                j_args.append(f"--{key_arg_name} {key_arg}")
         else:
             if isinstance(arg, bool):
                 j_args.append(f"--{arg_name}")
