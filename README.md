@@ -38,7 +38,7 @@ If the key points to a dictionary, that dictionary can have the following keys s
 
 Once the sweep is configured, the job can be launched as follows.
 ```
-./batch.py
+./batch.py -c example.json -p PARTITION -j JOB_NAME -f FILE_TO_RUN -q SLURM_QOS
 ```
 
 ## Issues
