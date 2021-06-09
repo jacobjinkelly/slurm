@@ -45,4 +45,13 @@ The output of the job will be saved by default in `experiments/${DATE_TIME}`,
 with a directory for each configuration of hyperparameters being swept over.
 
 ## Issues
-- If the file to be run passed to `launch_batch.sh` is changed, that new version will be run when the job is submitted to the queue (either due to waiting or preemption). One solution is to copy the file into the job directory and create the job script from there.
+There is a potential issue if a job is preempted and a new update to the repo is made.
+When the preempted job is relaunched it will run the newly updated code, and not the 
+original code it was run with. 
+A solution to this would be to clone the entire repo each time
+a job is launched. 
+This would slow down launching a sweep and put unneeded work on the login node by cloning
+the repo many times.
+The current solution is to make changes backwards compatible while jobs are in progress
+if pulling new updates to the repo is required, or simply not pulling
+new updates.
