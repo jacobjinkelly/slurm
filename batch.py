@@ -32,7 +32,7 @@ def run_cmd(cmd, pipe, shell=True, check=True, capture_output=True, **kwargs):
         subprocess.run(cmd, stdout=f, stderr=f, shell=shell, check=check, capture_output=capture_output, **kwargs)
 
 
-def setup_dirs(args):
+def setup(args):
     # create the directory for the sweep
     exp_dir = os.path.join(args.experiment_dir, datetime.now().strftime("%F-%H-%M-%S"))
     os.makedirs(exp_dir)
@@ -57,7 +57,7 @@ def launch_job(exp_dir, partition, j_name, file, args, q, resource):
 def main():
     args = get_args()
 
-    setup_dirs(args)
+    setup(args)
 
 
 if __name__ == "__main__":
