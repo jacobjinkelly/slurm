@@ -28,6 +28,7 @@ def get_args():
     # default arguments that will rarely be changed
     parser.add_argument("--exp_dir", type=str, default="experiments")
     parser.add_argument("--env", type=str, default="torch")
+    parser.add_argument("--no_save_dir", action="store_true", default=False)
     parser.add_argument("--no_ckpt", action="store_true", default=False)
     parser.add_argument("--resource", type=int, default=1)
     parser.add_argument("--cpus_per_task", type=int, default=2)
