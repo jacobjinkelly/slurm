@@ -52,8 +52,10 @@ def launch_job(exp_dir, partition, j_name, file, args, q, resource):
     """
     # set up directories for job
     j_dir = os.path.join(os.getcwd(), exp_dir, j_name)
-    os.makedirs(os.path.join(j_dir, "scripts"))
-    os.makedirs(os.path.join(j_dir, "log"))
+    j_dir_scripts = os.path.join(j_dir, "scripts")
+    j_dir_log = os.path.join(j_dir, "log")
+    os.makedirs(j_dir_scripts)
+    os.makedirs(j_dir_log)
 
     # configure SLURM options
 
