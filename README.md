@@ -21,17 +21,19 @@ See `example.json` for a template example.
 Each key in the json file corresponds to a command line argument.
 The key can point to a list of values to be swept, a single value to be set, 
 or a dictionary.
-If the key points to a dictionary, that dictionary can have the following keys set.
-- The `bool` key can be set to True, 
+If the key points to a dictionary, that dictionary can have the following keys:
+- `bool` can be set to True, 
   meaning the command line argument is of the form `--arg` instead of `--arg value`.
-- The `key` flag can be set to a string. Note, this key string CANNOT conflict with 
-  any command line arguments being configured in the sweep.
+- `key` can be set to a string.
   This option can be used to sweep multiple hyperparameters together.
   For example, we may want to set `--dropout 0` if `--batchnorm`.
   We could set the key to be `no_dropout_with_bn`.
+  Note, this key string CANNOT conflict with 
+  any command line arguments being configured in the sweep.
 - The `values` key can be set to a list of values.
-  If `key` and `bool` are not set, then we can just pass in a list directly.
-  If `bool` is set, the only option for this is `[true, false]`.
+  If `key` and `bool` are not set, then an error is thrown as we can just 
+  directly pass in a list of values for this hyperparameter instead of a dictionary.
+  If `bool` is set, then `values` must be a subset of `{true, false}`.
   If `key` is set, then `values` must be the same length across all entries with the same `key`.
 
 ### Launching Sweeps
@@ -50,8 +52,7 @@ When the preempted job is relaunched it will run the newly updated code, and not
 original code it was run with. 
 A solution to this would be to clone the entire repo each time
 a job is launched. 
-This would slow down launching a sweep and put unneeded work on the login node by cloning
-the repo many times.
-The current solution is to make changes backwards compatible while jobs are in progress
+This would slow down launching a sweep and put unneeded load on the SLURM login node.
+Instead, the current solution is to make changes backwards compatible while jobs are in progress
 if pulling new updates to the repo is required, or simply not pulling
-new updates.
+new updates until the old jobs are finished.
