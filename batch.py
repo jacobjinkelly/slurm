@@ -117,11 +117,12 @@ def launch_sweep(args):
         j_name = "_".join([f"{arg_name}_{arg}" for arg_name, arg in sweep_arg])
         j_args = fixed_args + " ".join([f"--{arg_name}" if isinstance(arg, bool) else f"--{arg_name} {arg}"
                                         for arg_name, arg in sweep_arg])
-        launch_job(args.exp_dir, args.partition, j_name, args.file, j_args, args.q)
+        launch_job(args.exp_dir, args.partition, j_name, args.file, j_args, args.q,
+                   args.resource, args.cpus_per_task)
 
 
-def launch_job(exp_dir, partition, j_name, file, args, q, resource, cpus_per_task, mem,
-               exclude=None, ntasks_per_node=1, nodes=1):
+def launch_job(exp_dir, partition, j_name, file, args, q,
+               resource, cpus_per_task, mem, exclude=None, ntasks_per_node=1, nodes=1):
     """
     Launch a single job as part of the sweep.
     """
