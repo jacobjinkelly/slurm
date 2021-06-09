@@ -65,9 +65,9 @@ def launch_job(exp_dir, partition, j_name, file, args, q, resource, cpus_per_tas
     # write SLURM script
     slurm_script = os.path.join(j_dir_scripts, f"{j_name}.slrm")
     with open(slurm_script, "w") as f:
+        f.write("#!/bin/bash\n")
 
         # configure SLURM
-        f.write("#!/bin/bash\n")
         f.write(f"#SBATCH --job-name={j_name}\n")
         f.write(f"#SBATCH --output={j_dir_log}/%j.out\n")
         f.write(f"#SBATCH --error={j_dir_log}/%j.err\n")
@@ -93,9 +93,9 @@ def launch_job(exp_dir, partition, j_name, file, args, q, resource, cpus_per_tas
     # write job script
     job_script = os.path.join(j_dir_scripts, f"{j_name}.sh")
     with open(job_script, "w") as f:
+        f.write("#!/bin/bash\n")
 
         # configure SLURM
-        f.write("#!/bin/bash\n")
         f.write(f"#SBATCH --job-name={j_name}\n")
         f.write(f"#SBATCH --output={j_dir_log}/%j.out\n")
         f.write(f"#SBATCH --error={j_dir_log}/%j.err\n")
