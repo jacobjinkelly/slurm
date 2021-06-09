@@ -104,6 +104,8 @@ def launch_job(exp_dir, partition, j_name, file, args, q, resource, cpus_per_tas
         # launch job
         f.write(f"python {file} {args} --save_dir {j_dir} --ckpt_path=/checkpoint/$USER/\\$SLURM_JOB_ID/ck.pt")
 
+    subprocess.run(f"sbatch {slurm_script}")
+
 
 def main():
     args = get_args()
