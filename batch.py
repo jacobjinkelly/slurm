@@ -20,6 +20,7 @@ def get_args():
     parser.add_argument("-f", "--file", type=str, required=True)
     parser.add_argument("-a", "--args", type=str)
     parser.add_argument("-q", "--q", type=str, required=True)
+    parser.add_argument("-c", "--config", type=str, required=True)
 
     # default arguments that will rarely be changed
     parser.add_argument("--experiment_dir", type=str, default="experiments")
