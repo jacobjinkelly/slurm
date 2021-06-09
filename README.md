@@ -21,8 +21,8 @@ See `example.json` for a template example.
 Each key in the json file corresponds to a command line argument.
 The key can point to a list of values to be swept, a single value to be set, 
 or a dictionary.
-If the key points to a dictionary, that dictionary can have the following keys set.
-- The `bool` key can be set to True, 
+If the key points to a dictionary, that dictionary can have the following keys:
+- `bool` can be set to True, 
   meaning the command line argument is of the form `--arg` instead of `--arg value`.
 - The `key` flag can be set to a string. Note, this key string CANNOT conflict with 
   any command line arguments being configured in the sweep.
