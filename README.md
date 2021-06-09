@@ -13,9 +13,11 @@ To set up scripts in a new repo `new_repo`, simply run
 
 From the new repo, sweeps can be configured by creating a json file.
 See `example.json` for a template.
-Each key in the json file can epoint to a list of values to be swept,
-a single value to be set.
-Additionally, a key may point to another dictionary with further options.
+
+Each key in the json file corresponds to a command line argument.
+The key can point to a list of values to be swept, a single value to be set, 
+or a dictionary.
+If the key
 
 Once the sweep is configured, the job can be launched as follows.
 
