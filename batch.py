@@ -62,6 +62,7 @@ def launch_job(exp_dir, partition, j_name, file, args, q, resource):
     with open(slurm_script, "w") as f:
         # explicit \n is best according to
         # https://stackoverflow.com/questions/6159900/correct-way-to-write-line-to-file
+
         f.write("#!/bin/bash\n")
         f.write(f"#SBATCH --job-name=${j_name}\n")
         f.write(f"#SBATCH --output=${j_dir_log}/%j.out\n")
