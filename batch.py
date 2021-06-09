@@ -105,7 +105,7 @@ def launch_sweep(args):
     """
     Launch a sweep of jobs.
     """
-    parse_config(args.config)
+    fixed_args, sweep_args = parse_config(args.config)
 
 
 def launch_job(exp_dir, partition, j_name, file, args, q, resource, cpus_per_task, mem,
