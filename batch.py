@@ -2,6 +2,7 @@
 
 import argparse
 import sys
+import os
 
 assert sys.version_info.major == 3
 assert sys.version_info.minor >= 6
@@ -21,6 +22,8 @@ def get_args():
 
 def main():
     args = get_args()
+
+    exp_dir = os.path.join("experiments")
 
 
 if __name__ == "__main__":
