@@ -92,6 +92,31 @@ def launch_job(exp_dir, partition, j_name, file, args, q, resource, cpus_per_tas
 
     # write job script
     job_script = os.path.join(j_dir_scripts, f"{j_name}.sh")
+    with open(job_script, "w") as f:
+
+        # configure SLURM
+        f.write("#!/bin/bash\n")
+        f.write(f"#SBATCH --job-name={j_name}\n")
+        f.write(f"#SBATCH --output={j_dir_log}/%j.out\n")
+        f.write(f"#SBATCH --error={j_dir_log}/%j.err\n")
+        f.write(f"#SBATCH --partition={partition}\n")
+        f.write(f"#SBATCH --cpus-per-task={cpus_per_task}\n")
+        f.write(f"#SBATCH --ntasks-per-node={ntasks_per_node}\n")
+        f.write(f"#SBATCH --mem={mem}G\n")
+        f.write(f"#SBATCH --nodes={nodes}\n")
+        f.write(f"#SBATCH --qos=${q}\n")
+
+        if exclude is not None:
+            f.write(f"#SBATCH --exclude={exclude.join(',')}\n")
+
+        if partition != "cpu":
+            f.write(f"#SBATCH --gres=gpu:${resource}")
+
+        if q == "deadline":
+            f.write("#SBATCH --account=deadline")
+
+        # add command to run job script
+        f.write(f"bash ${j_dir}/scripts/${j_name}.sh")
 
 def main():
     args = get_args()
