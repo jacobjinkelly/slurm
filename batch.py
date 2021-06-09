@@ -26,7 +26,7 @@ def get_args():
     parser.add_argument("-c", "--config", type=str, required=True)
 
     # default arguments that will rarely be changed
-    parser.add_argument("--experiment_dir", type=str, default="experiments")
+    parser.add_argument("--exp_dir", type=str, default="experiments")
     parser.add_argument("--resource", type=int, default=1)
     parser.add_argument("--cpus_per_task", type=int, default=2)
     parser.add_argument("--mem", type=int, default=16)
@@ -44,7 +44,7 @@ def run_cmd(cmd, pipe, shell=True, check=True, capture_output=True, **kwargs):
 
 def setup(args):
     # create the directory for the sweep
-    exp_dir = os.path.join(args.experiment_dir, datetime.now().strftime("%F-%H-%M-%S"))
+    exp_dir = os.path.join(args.exp_dir, datetime.now().strftime("%F-%H-%M-%S"))
     os.makedirs(exp_dir)
 
     # copy files for checking sweeps
