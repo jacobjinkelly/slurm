@@ -93,6 +93,7 @@ def parse_config(config_file):
 
     return fixed_args
 
+
 def launch_sweep(args):
     """
     Launch a sweep of jobs.
