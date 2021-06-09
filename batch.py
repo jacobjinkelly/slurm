@@ -46,6 +46,12 @@ def setup_dirs(args):
     run_cmd("git diff", os.path.join(exp_dir, "diff.patch"))
 
 
+def launch_job():
+    """
+    Launch a single job as part of the sweep.
+    """
+    pass
+
 def main():
     args = get_args()
 
