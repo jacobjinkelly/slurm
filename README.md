@@ -31,7 +31,8 @@ If the key points to a dictionary, that dictionary can have the following keys:
   Note, this key string CANNOT conflict with 
   any command line arguments being configured in the sweep.
 - The `values` key can be set to a list of values.
-  If `key` and `bool` are not set, then we can just pass in a list directly.
+  If `key` and `bool` are not set, then an error is thrown as we can just 
+  directly pass in a list of values for this hyperparameter instead of a dictionary.
   If `bool` is set, the only option for this is `[true, false]`.
   If `key` is set, then `values` must be the same length across all entries with the same `key`.
 
