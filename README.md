@@ -28,8 +28,11 @@ If the key points to a dictionary, that dictionary can have the following keys s
   any command line arguments being configured in the sweep.
   This option can be used to sweep multiple hyperparameters together.
   For example, we may want to set `--dropout 0` if `--batchnorm`.
-- The `values` key can be set to a list of values when `key` is set.
+  We could set the key to be `no_dropout_with_bn`.
+- The `values` key can be set to a list of values.
   If `key` and `bool` are not set, then we can just pass in a list directly.
+  If `bool` is set, the only option for this is `[true, false]`.
+  If `key` is set, then `values` must be a list of the same length for the same value of `key`.
 
 ### Launching Sweeps
 
