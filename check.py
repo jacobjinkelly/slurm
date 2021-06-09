@@ -15,6 +15,7 @@ def get_args():
     parser.add_argument("-s", "--substr", type=str, default="")
     parser.add_argument("-f", "--file", type=str, default="log.txt")
     parser.add_argument("-l", "--line", type=int, default=-1)
+    parser.add_argument("-n", "--name", action="store_true", default=False)
 
     return parser.parse_args()
 
