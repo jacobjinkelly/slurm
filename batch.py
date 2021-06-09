@@ -115,7 +115,9 @@ def launch_sweep(args):
     for sweep_arg in sweep_args:
         # sweep_arg is a list of (arg_name, arg) tuples
         j_name = "_".join([f"{arg_name}_{arg}" for arg_name, arg in sweep_arg])
-        launch_job(args.exp_dir, args.partition)
+        j_args = fixed_args + " ".join([f"--{arg_name}" if isinstance(arg, bool) else f"--{arg_name} {arg}"
+                                        for arg_name, arg in sweep_arg])
+        launch_job(args.exp_dir, args.partition, j_name, args.file, j_args, args.q)
 
 
 def launch_job(exp_dir, partition, j_name, file, args, q, resource, cpus_per_task, mem,
