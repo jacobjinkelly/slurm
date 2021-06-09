@@ -66,6 +66,12 @@ def parse_config(config_file):
                 assert args["bool"] is True
                 if len(args) == 1:
                     fixed_args += f"--{arg_name}"
+                else:
+                    # the only other config arg should be "values" with True and False
+                    assert len(args) == 2
+                    assert "values" in args
+                    assert set(args["values"]) == {True, False}
+
         else:
             # add the fixed argument
             fixed_args += f"--{arg_name} {args} "  # include a space!
