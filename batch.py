@@ -71,6 +71,10 @@ def logspace(start, stop, num, base=10):
     return [math.log(val, base) for val in logspace(start, stop, num)]
 
 
+def get_vals(args):
+    pass
+
+
 def parse_config(config_file):
     """
     Parse configuration file for fixed and sweep job hyperparamters.
