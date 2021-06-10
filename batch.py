@@ -65,6 +65,10 @@ def setup(args):
 def cast_dtype(vals, dtype):
     if dtype == "int":
         vals = [int(val) for val in vals]
+    elif dtype == "float" or dtype is None:
+        pass
+    else:
+        raise ValueError(f"Unrecognized dtype {dtype}")
     return vals
 
 
