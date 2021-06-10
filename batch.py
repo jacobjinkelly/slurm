@@ -69,7 +69,10 @@ def linspace(start, stop, num, dtype=None):
 
 
 def logspace(start, stop, num, dtype, base=10):
-    return [math.log(val, base) for val in linspace(start, stop, num, dtype)]
+    vals = [math.log(val, base) for val in linspace(start, stop, num)]
+    if dtype == "int":
+        vals = [int(val) for val in vals]
+    return vals
 
 
 def get_vals(args):
