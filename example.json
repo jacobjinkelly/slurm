@@ -1,15 +1,15 @@
 {
-  "lr": [1e-2, 1e-3],
+  "data": "mnist",
+  "n_iters": 10000,
   "batch_size": [100],
   "save_best": {
     "bool": true
   },
+  "lr": [1e-2, 1e-3],
   "early_stopping": {
     "bool": true,
     "values": [true, false]
   },
-  "data": "mnist",
-  "n_iters": 10000,
   "batch_norm": {
     "key": "no_dropout_with_bn",
     "values": [true, false]
