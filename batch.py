@@ -91,8 +91,8 @@ def parse_config(config_file):
                         # this arg is swept independently
                         sweep_args.append([(arg_name, arg) for arg in args["values"]])
             else:
-                # if no "key" and no "bool", then sweep values should be specified as a list
-                sweep_keys.add(args["key"])
+                if "key" in args:
+                    sweep_keys.add(args["key"])
 
         elif isinstance(args, str) or isinstance(args, int) or isinstance(args, float):
             # add the fixed argument
