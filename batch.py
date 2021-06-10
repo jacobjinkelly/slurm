@@ -143,7 +143,7 @@ def parse_config(config_file):
                 if "values" in args:
                     sweep_keys_args[sweep_key][arg_name] = args["values"]
                 else:
-                    sweep_keys_args[sweep_key][arg_name] = [(arg_name, arg) for arg in get_vals(args)]
+                    sweep_keys_args[sweep_key][arg_name] = get_vals(args)
 
     for sweep_key in sorted(sweep_keys):
         try:
