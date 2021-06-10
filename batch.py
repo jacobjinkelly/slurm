@@ -62,12 +62,12 @@ def setup(args):
     return exp_dir
 
 
-def linspace(start, stop, num):
+def linspace(start, stop, num, dtype):
     step = (stop - start) / (num - 1)
     return [start + i * step for i in range(num)]
 
 
-def logspace(start, stop, num, base=10):
+def logspace(start, stop, num, dtype, base=10):
     return [math.log(val, base) for val in logspace(start, stop, num)]
 
 
