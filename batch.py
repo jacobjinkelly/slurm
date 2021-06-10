@@ -61,6 +61,14 @@ def setup(args):
     return exp_dir
 
 
+def linspace(start, stop, num):
+    pass
+
+
+def logspace(start, stop, num):
+    pass
+
+
 def parse_config(config_file):
     """
     Parse configuration file for fixed and sweep job hyperparamters.
@@ -93,9 +101,9 @@ def parse_config(config_file):
             else:
                 if "key" in args:
                     sweep_keys.add(args["key"])
-                elif all(args_key in args for args_key in ("dist", "min", "max")):
+                elif all(args_key in args for args_key in ("dist", "min", "max", "num")):
                     if args["dist"] == "lin":
-                        pass
+                        space_values_func = np.linspace
                     elif args["dist"] == "log":
                         pass
                     else:
