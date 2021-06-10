@@ -86,6 +86,8 @@ def get_vals(args):
             dtype = int
         elif args["dtype"] == "float":
             dtype = float
+        else:
+            raise ValueError(f"Unrecognized dtype {args['dtype']}")
     else:
         dtype = float
     return val_fun(args["start"], args["stop"], args["num"], dtype=dtype)
