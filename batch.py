@@ -75,8 +75,7 @@ def linspace(start, stop, num, dtype=None):
 
 
 def logspace(start, stop, num, dtype, base=10):
-    vals = [math.log(val, base) for val in linspace(start, stop, num)]
-    return cast_vals(vals, dtype)
+    return cast_vals([math.log(val, base) for val in linspace(start, stop, num)], dtype)
 
 
 def get_vals(args):
