@@ -78,7 +78,7 @@ def linspace(start, stop, num, dtype=None):
 
 
 def logspace(start, stop, num, dtype, base=10):
-    return cast_dtype([math.log(val, base) for val in linspace(start, stop, num)], dtype)
+    return cast_dtype([math.pow(base, val) for val in linspace(start, stop, num)], dtype)
 
 
 def get_vals(args):
@@ -262,7 +262,7 @@ def launch_job(exp_dir, partition, j_name, file, args, q,
         f.write(f"python {file} {args}\n")
 
     # launch job
-    subprocess.run(f"sbatch {slurm_script}", shell=True, check=True)
+    # subprocess.run(f"sbatch {slurm_script}", shell=True, check=True)
 
 
 def main():

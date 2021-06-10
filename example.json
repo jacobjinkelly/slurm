@@ -9,9 +9,9 @@
   "hidden_units": {
     "key": "arch",
     "dist": "lin",
-    "start": 4,
+    "start": 3,
     "stop": 6,
-    "num": 3,
+    "num": 4,
     "dtype": "int"
   },
   "layers": {
