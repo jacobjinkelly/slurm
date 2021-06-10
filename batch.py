@@ -94,7 +94,12 @@ def parse_config(config_file):
                 if "key" in args:
                     sweep_keys.add(args["key"])
                 elif all(args_key in args for args_key in ("dist", "min", "max")):
-                    pass
+                    if args["dist"] == "lin":
+                        pass
+                    elif args["dist"] == "log":
+                        pass
+                    else:
+                        raise ValueError(f"Unrecognized dist argument {args['dist']}")
                 else:
                     raise ValueError(f"Unrecognized args combinations {args}")
 
