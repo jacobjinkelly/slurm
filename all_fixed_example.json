@@ -1,0 +1,7 @@
+{
+  "save_best": {
+    "bool": true
+  },
+  "data": "mnist",
+  "n_iters": 10000
+}
