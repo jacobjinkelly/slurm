@@ -62,7 +62,8 @@ def setup(args):
 
 
 def linspace(start, stop, num):
-    pass
+    step = (stop - start) / (num - 1)
+    return [start +  i * step for i in range(num)]
 
 
 def logspace(start, stop, num):
