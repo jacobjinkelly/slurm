@@ -72,7 +72,16 @@ def logspace(start, stop, num, base=10):
 
 
 def get_vals(args):
-    pass
+    if args["dist"] == "lin":
+        val_fun = linspace
+    elif args["dist"].startswith("log"):
+        base = float(args["dist"][len("log"):])
+        val_fun = partial(logspace, base=base)
+    elif args["dist"] == "ln":
+        val_fun = partial(logspace, base=math.e)
+    else:
+        raise ValueError(f"Unrecognized dist argument {args['dist']}")
+    return val_fun(args["min"], args["max"], args["num"])
 
 
 def parse_config(config_file):
