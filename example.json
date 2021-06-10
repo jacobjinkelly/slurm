@@ -15,7 +15,13 @@
   },
   "layers": {
     "key": "arch",
-    "dist":
+    "dist": "lin",
+    "start": 10,
+    "stop": 7,
+    "num": 4
+  },
+  "lr_decay_factor": {
+    "dist": "log"
   },
   "early_stopping": {
     "bool": true,

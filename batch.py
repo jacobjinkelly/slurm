@@ -75,7 +75,7 @@ def get_vals(args):
     if args["dist"] == "lin":
         val_fun = linspace
     elif args["dist"].startswith("log"):
-        base = float(args["dist"][len("log"):])
+        base = 10 if args["dist"] == "log" else float(args["dist"][len("log"):])
         val_fun = partial(logspace, base=base)
     elif args["dist"] == "ln":
         val_fun = partial(logspace, base=math.e)
