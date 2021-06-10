@@ -11,14 +11,16 @@
     "dist": "lin",
     "start": 4,
     "stop": 6,
-    "num": 3
+    "num": 3,
+    "dtype": "int"
   },
   "layers": {
     "key": "arch",
     "dist": "lin",
     "start": 10,
     "stop": 7,
-    "num": 4
+    "num": 4,
+    "dtype": "int"
   },
   "lr_decay_factor": {
     "dist": "log"
