@@ -6,6 +6,17 @@
     "bool": true
   },
   "lr": [1e-2, 1e-3],
+  "hidden_units": {
+    "key": "arch",
+    "dist": "lin",
+    "start": 4,
+    "stop": 6,
+    "num": 3
+  },
+  "layers": {
+    "key": "arch",
+    "dist":
+  },
   "early_stopping": {
     "bool": true,
     "values": [true, false]

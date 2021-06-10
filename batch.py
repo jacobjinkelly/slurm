@@ -81,7 +81,7 @@ def get_vals(args):
         val_fun = partial(logspace, base=math.e)
     else:
         raise ValueError(f"Unrecognized dist argument {args['dist']}")
-    return val_fun(args["min"], args["max"], args["num"])
+    return val_fun(args["start"], args["stop"], args["num"])
 
 
 def parse_config(config_file):
