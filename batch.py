@@ -10,6 +10,7 @@ from collections import defaultdict
 from datetime import datetime
 from functools import partial
 from itertools import product
+import math
 
 assert sys.version_info.major == 3
 assert sys.version_info.minor >= 6
@@ -66,8 +67,8 @@ def linspace(start, stop, num):
     return [start + i * step for i in range(num)]
 
 
-def logspace(start, stop, num):
-    pass
+def logspace(start, stop, num, base=10):
+    return [math.log(val, base) for val in logspace(start, stop, num)]
 
 
 def parse_config(config_file):
