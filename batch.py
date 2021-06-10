@@ -87,7 +87,7 @@ def get_vals(args):
         elif args["dtype"] == "float":
             dtype = float
     else:
-        dtype = int
+        dtype = float
     return val_fun(args["start"], args["stop"], args["num"], dtype=dtype)
 
 
