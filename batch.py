@@ -113,6 +113,7 @@ def parse_config(config_file):
                         val_fun = partial(logspace, base=math.e)
                     else:
                         raise ValueError(f"Unrecognized dist argument {args['dist']}")
+                    sweep_args.append([(arg_name, arg) for arg in val_fun(args["min"], args["max"], args["num"])])
                 else:
                     raise ValueError(f"Unrecognized args combinations {args}")
 
