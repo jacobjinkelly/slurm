@@ -94,9 +94,11 @@ def parse_config(config_file):
                 # if no "key" and no "bool", then sweep values should be specified as a list
                 sweep_keys.add(args["key"])
 
-        else:
+        elif isinstance(args, str) or isinstance(args, int) or isinstance(args, float):
             # add the fixed argument
             fixed_args += f"--{arg_name} {args} "  # include a space!
+        else:
+            raise ValueError(f"Unrecognized argument {args} of type {type(args)}")
 
     sweep_keys_args = defaultdict(dict)
     for sweep_key in sweep_keys:
