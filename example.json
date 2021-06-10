@@ -10,14 +10,6 @@
   },
   "data": "mnist",
   "n_iters": 10000,
-  "sigma": {
-    "key": "test",
-    "values": [0.01, 0.001]
-  },
-  "step_size": {
-    "key": "test",
-    "values": [3, 1]
-  },
   "batch_norm": {
     "key": "no_dropout_with_bn",
     "values": [true, false]
