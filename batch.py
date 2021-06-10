@@ -62,17 +62,21 @@ def setup(args):
     return exp_dir
 
 
+def cast_vals(vals, dtype):
+    if dtype == "int":
+        vals = [int(val) for val in vals]
+    return vals
+
+
 def linspace(start, stop, num, dtype=None):
     step = (stop - start) / (num - 1)
     vals = [start + i * step for i in range(num)]
-    return vals
+    return cast_vals(vals, dtype)
 
 
 def logspace(start, stop, num, dtype, base=10):
     vals = [math.log(val, base) for val in linspace(start, stop, num)]
-    if dtype == "int":
-        vals = [int(val) for val in vals]
-    return vals
+    return cast_vals(vals, dtype)
 
 
 def get_vals(args):
