@@ -70,8 +70,7 @@ def cast_vals(vals, dtype):
 
 def linspace(start, stop, num, dtype=None):
     step = (stop - start) / (num - 1)
-    vals = [start + i * step for i in range(num)]
-    return cast_vals(vals, dtype)
+    return cast_vals([start + i * step for i in range(num)], dtype)
 
 
 def logspace(start, stop, num, dtype, base=10):
