@@ -91,15 +91,7 @@ def get_vals(args):
         val_fun = partial(logspace, base=math.e)
     else:
         raise ValueError(f"Unrecognized dist argument {args['dist']}")
-    if "dtype" in args:
-        if args["dtype"] == "int":
-            dtype = int
-        elif args["dtype"] == "float":
-            dtype = float
-        else:
-            raise ValueError(f"Unrecognized dtype {args['dtype']}")
-    else:
-        dtype = float
+    dtype = args["dtype"] if "dtype" in args else "float"
     return val_fun(args["start"], args["stop"], args["num"], dtype=dtype)
 
 
