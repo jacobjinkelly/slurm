@@ -93,6 +93,10 @@ def parse_config(config_file):
             else:
                 if "key" in args:
                     sweep_keys.add(args["key"])
+                elif all(args_key in args for args_key in ("dist", "min", "max")):
+                    pass
+                else:
+                    raise ValueError(f"Unrecognized args combinations {args}")
 
         elif isinstance(args, str) or isinstance(args, int) or isinstance(args, float):
             # add the fixed argument
