@@ -116,19 +116,8 @@ def parse_config(config_file):
             else:
                 if "key" in args:
                     sweep_keys.add(args["key"])
-                elif all(args_key in args for args_key in ("dist", "min", "max", "num")):
-                    if args["dist"] == "lin":
-                        val_fun = linspace
-                    elif args["dist"].startswith("log"):
-                        base = float(args["dist"][len("log"):])
-                        val_fun = partial(logspace, base=base)
-                    elif args["dist"] == "ln":
-                        val_fun = partial(logspace, base=math.e)
-                    else:
-                        raise ValueError(f"Unrecognized dist argument {args['dist']}")
-                    sweep_args.append([(arg_name, arg) for arg in val_fun(args["min"], args["max"], args["num"])])
                 else:
-                    raise ValueError(f"Unrecognized args combinations {args}")
+                    sweep_args.append([(arg_name, arg) for arg in get_vals(args)])
 
         elif isinstance(args, str) or isinstance(args, int) or isinstance(args, float):
             # add the fixed argument
