@@ -127,7 +127,10 @@ def parse_config(config_file):
     for sweep_key in sweep_keys:
         for arg_name, args in config.items():
             if isinstance(args, dict) and "key" in args and args["key"] == sweep_key:
-                sweep_keys_args[sweep_key][arg_name] = args["values"]
+                if "values" in args:
+                    sweep_keys_args[sweep_key][arg_name] = args["values"]
+                else:
+                    pass
 
     for sweep_key in sorted(sweep_keys):
         try:
