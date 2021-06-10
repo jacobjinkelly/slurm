@@ -81,7 +81,14 @@ def get_vals(args):
         val_fun = partial(logspace, base=math.e)
     else:
         raise ValueError(f"Unrecognized dist argument {args['dist']}")
-    return val_fun(args["start"], args["stop"], args["num"])
+    if "dtype" in args:
+        if args["dtype"] == "int":
+            dtype = int
+        elif args["dtype"] == "float":
+            dtype = float
+    else:
+        dtype = int
+    return val_fun(args["start"], args["stop"], args["num"], dtype=dtype)
 
 
 def parse_config(config_file):
