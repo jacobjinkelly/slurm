@@ -23,7 +23,10 @@
     "dtype": "int"
   },
   "lr_decay_factor": {
-    "dist": "log"
+    "dist": "log",
+    "start": -1,
+    "stop": -3,
+    "num": 3
   },
   "early_stopping": {
     "bool": true,
