@@ -103,9 +103,9 @@ def parse_config(config_file):
                     sweep_keys.add(args["key"])
                 elif all(args_key in args for args_key in ("dist", "min", "max", "num")):
                     if args["dist"] == "lin":
-                        space_values_func = np.linspace
+                        space_values_func = linspace
                     elif args["dist"] == "log":
-                        pass
+                        space_values_func = logspace
                     else:
                         raise ValueError(f"Unrecognized dist argument {args['dist']}")
                 else:
