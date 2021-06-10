@@ -109,6 +109,8 @@ def parse_config(config_file):
                     elif args["dist"].startswith("log"):
                         base = float(args["dist"][len("log"):])
                         val_fun = partial(logspace, base=base)
+                    elif args["dist"] == "ln":
+                        val_fun = partial(logspace, base=math.e)
                     else:
                         raise ValueError(f"Unrecognized dist argument {args['dist']}")
                 else:
