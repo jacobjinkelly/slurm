@@ -254,9 +254,9 @@ def launch_job(exp_dir, partition, j_name, file, args, q,
 
         if not no_ckpt:
             # config checkpoint
-            f.write("touch /checkpoint/$USER/\\$SLURM_JOB_ID/DELAYPURGE\n")
+            f.write("touch /checkpoint/$USER/$SLURM_JOB_ID/DELAYPURGE\n")
 
-            args += "--ckpt_path=/checkpoint/$USER/\\$SLURM_JOB_ID/ck.pt "
+            args += "--ckpt_path=/checkpoint/$USER/$SLURM_JOB_ID/ck.pt "
 
         # launch job
         f.write(f"python {file} {args}\n")
