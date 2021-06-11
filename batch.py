@@ -28,7 +28,7 @@ def get_args():
 
     # default arguments that will rarely be changed
     parser.add_argument("--exp_dir", type=str, default="experiments")
-    parser.add_argument("--env", type=str, default="jax_cpu")
+    parser.add_argument("--env", type=str, default="torch")
     parser.add_argument("--no_save_dir", action="store_true", default=False)
     parser.add_argument("--no_ckpt", action="store_true", default=False)
     parser.add_argument("--resource", type=int, default=1)
@@ -250,19 +250,19 @@ def launch_job(exp_dir, partition, j_name, file, args, q,
         f.write(f". /h/$USER/envs/{env}.env\n")
 
         if not no_save_dir:
-            args += f"--save_dir {j_dir}"
+            args += f"--save_dir {j_dir} "
 
         if not no_ckpt:
             # config checkpoint
             f.write("touch /checkpoint/$USER/\\$SLURM_JOB_ID/DELAYPURGE\n")
 
-            args += "--ckpt_path=/checkpoint/$USER/\\$SLURM_JOB_ID/ck.pt"
+            args += "--ckpt_path=/checkpoint/$USER/\\$SLURM_JOB_ID/ck.pt "
 
         # launch job
         f.write(f"python {file} {args}\n")
 
     # launch job
-    # subprocess.run(f"sbatch {slurm_script}", shell=True, check=True)
+    subprocess.run(f"sbatch {slurm_script}", shell=True, check=True)
 
 
 def main():
