@@ -190,7 +190,7 @@ def launch_sweep(args):
     fixed_args, sweep_args, sweep_keys = parse_config(args.config)
 
     for sweep_arg in sweep_args:
-        j_name = args.j_name + f"_{get_j_name(sweep_arg, sweep_keys)}" if len(sweep_arg) > 1 else args.j_name
+        j_name = args.j_name + f"_{get_j_name(sweep_arg, sweep_keys)}" if len(sweep_arg) > 0 else args.j_name
         j_args = fixed_args + get_j_args(sweep_arg, sweep_keys)
         launch_job(args.exp_dir, args.partition, j_name, args.file, j_args, args.q,
                    args.no_save_dir, args.no_ckpt, args.env, args.resource, args.cpus_per_task, args.mem, args.exclude,
