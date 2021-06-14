@@ -23,7 +23,7 @@ def get_args():
 def main():
     args = get_args()
 
-    for log_file in glob(f"*{args.substr}/{args.file}"):
+    for log_file in glob(f"*{args.substr}*/{args.file}"):
         with open(log_file, "r") as f:
             line = f.readlines()[args.line]
             if args.name:
