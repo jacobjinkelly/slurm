@@ -25,7 +25,7 @@ def main():
 
     for log_file in glob(f"*{args.substr}*/{args.file}"):
         with open(log_file, "r") as f:
-            line = f.readlines()[args.line]
+            line = f.readlines()[args.line].rstrip()
             if args.name:
                 print(f"{line}\t{log_file}")
             else:
