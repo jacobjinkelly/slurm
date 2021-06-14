@@ -11,6 +11,7 @@ from datetime import datetime
 from functools import partial
 from itertools import product
 import math
+import re
 
 assert sys.version_info.major == 3
 assert sys.version_info.minor >= 6
@@ -156,6 +157,12 @@ def parse_config(config_file):
 
 
 def get_single_j_name(arg_name, arg):
+    """
+    Modified from https://github.com/django/django/blob/master/django/utils/text.py.
+    Process arg to remove any filesystem-sensitive characters.
+    """
+    arg = re.sub(r'[^\w\s-]', '', arg.lower())
+    arg = re.sub(r'[-\s]+', '-', arg).strip('-_')
     return f"{arg_name}_{arg}"
 
 
