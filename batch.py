@@ -161,6 +161,7 @@ def get_single_j_name(arg_name, arg):
     Modified from https://github.com/django/django/blob/master/django/utils/text.py.
     Process arg to remove any filesystem-sensitive characters.
     """
+    arg = str(arg)
     arg = re.sub(r'[^\w\s-]', '', arg.lower())
     arg = re.sub(r'[-\s]+', '-', arg).strip('-_')
     return f"{arg_name}_{arg}"
