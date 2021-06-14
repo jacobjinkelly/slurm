@@ -2,7 +2,9 @@
 
 import argparse
 import json
+import math
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -10,8 +12,6 @@ from collections import defaultdict
 from datetime import datetime
 from functools import partial
 from itertools import product
-import math
-import re
 
 assert sys.version_info.major == 3
 assert sys.version_info.minor >= 6
