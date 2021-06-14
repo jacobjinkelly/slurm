@@ -1,0 +1,3 @@
+{
+  "eval": ["experiments/k_weight_0/2.pt", "experiments/k_weight_0/4.pt"]
+}
