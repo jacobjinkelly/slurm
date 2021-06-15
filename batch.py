@@ -162,8 +162,9 @@ def get_single_j_name(arg_name, arg):
     Process arg to remove any filesystem-sensitive characters.
     """
     arg = str(arg)
-    arg = re.sub(r'[^\w\s-]', '', arg.lower())
-    arg = re.sub(r'[-\s]+', '-', arg).strip('-_')
+    if "/" in arg:
+        arg = re.sub(r'[^\w\s-]', '', arg.lower())
+        arg = re.sub(r'[-\s]+', '-', arg).strip('-_')
     return f"{arg_name}_{arg}"
 
 
