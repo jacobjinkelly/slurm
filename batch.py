@@ -38,6 +38,7 @@ def get_args():
     parser.add_argument("--exclude", type=str, default=None)
     parser.add_argument("--ntasks_per_node", type=int, default=1)
     parser.add_argument("--nodes", type=int, default=1)
+    parser.add_argument("--env_vars", type=str, default="")
 
     return parser.parse_args()
 
@@ -203,11 +204,11 @@ def launch_sweep(args):
         j_args = fixed_args + get_j_args(sweep_arg, sweep_keys)
         launch_job(args.exp_dir, args.partition, j_name, args.file, j_args, args.q,
                    args.no_save_dir, args.no_ckpt, args.env, args.resource, args.cpus_per_task, args.mem, args.exclude,
-                   args.ntasks_per_node, args.nodes)
+                   args.ntasks_per_node, args.nodes, args.env_vars)
 
 
 def launch_job(exp_dir, partition, j_name, file, args, q,
-               no_save_dir, no_ckpt, env, resource, cpus_per_task, mem, exclude, ntasks_per_node, nodes):
+               no_save_dir, no_ckpt, env, resource, cpus_per_task, mem, exclude, ntasks_per_node, nodes, env_vars):
     """
     Launch a single job as part of the sweep.
     """
@@ -268,7 +269,7 @@ def launch_job(exp_dir, partition, j_name, file, args, q,
             args += " --ckpt_path=/checkpoint/$USER/$SLURM_JOB_ID/ck.pt "
 
         # launch job
-        f.write(f"python {file} {args}\n")
+        f.write(f"{env_vars} python {file} {args}\n")
 
     # launch job
     subprocess.run(f"sbatch {slurm_script}", shell=True, check=True)
