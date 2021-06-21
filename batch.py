@@ -228,6 +228,8 @@ def launch_job(exp_dir, partition, j_name, file, args, q,
         f.write(f"#SBATCH --qos={q}\n")
 
         if exclude is not None:
+            if isinstance(exclude, str):
+                exclude = [exclude]
             f.write(f"#SBATCH --exclude={','.join(exclude)}\n")
 
         if partition != "cpu":
