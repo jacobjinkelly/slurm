@@ -116,7 +116,7 @@ def parse_config(config_file):
                 sweep_keys.add(args["key"])
             else:
                 sweep_args.append([(arg_name, arg) for arg in get_vals(args)])
-        elif isinstance(args, bool):
+        elif isinstance(args, bool):  # check first, since bool is also an int
             assert args is True  # otherwise, it shouldn't have been passed in the first place!
             # add fixed bool argument
             fixed_args += f"--{arg_name} "  # include a space!
