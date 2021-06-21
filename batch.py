@@ -120,7 +120,7 @@ def parse_config(config_file):
             # add the fixed argument
             fixed_args += f"--{arg_name} {args} "  # include a space!
         elif isinstance(args, bool):
-            assert args is True
+            assert args is True  # otherwise, it shouldn't have been passed in the first place!
             # add fixed bool argument
             fixed_args += f"--{arg_name} "  # include a space!
         else:
