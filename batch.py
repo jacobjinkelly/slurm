@@ -119,6 +119,9 @@ def parse_config(config_file):
         elif isinstance(args, str) or isinstance(args, int) or isinstance(args, float):
             # add the fixed argument
             fixed_args += f"--{arg_name} {args} "  # include a space!
+        elif isinstance(args, bool):
+            # add fixed bool argument
+            fixed_args += f"--{arg_name} "  # include a space!
         else:
             raise ValueError(f"Unrecognized argument {args} of type {type(args)}")
 
