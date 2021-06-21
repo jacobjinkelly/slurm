@@ -35,7 +35,7 @@ def get_args():
     parser.add_argument("--resource", type=int, default=1)
     parser.add_argument("--cpus_per_task", type=int, default=1)
     parser.add_argument("--mem", type=int, default=16)
-    parser.add_argument("--exclude", type=str, default=None)
+    parser.add_argument("--exclude", nargs="+", type=str, default=[])
     parser.add_argument("--ntasks_per_node", type=int, default=1)
     parser.add_argument("--nodes", type=int, default=1)
     parser.add_argument("--env_vars", type=str, default="")
@@ -228,8 +228,6 @@ def launch_job(exp_dir, partition, j_name, file, args, q,
         f.write(f"#SBATCH --qos={q}\n")
 
         if exclude is not None:
-            if isinstance(exclude, str):
-                exclude = [exclude]
             f.write(f"#SBATCH --exclude={','.join(exclude)}\n")
 
         if partition != "cpu":
@@ -262,7 +260,7 @@ def launch_job(exp_dir, partition, j_name, file, args, q,
         f.write(f"{env_vars} python {file} {args}\n")
 
     # launch job
-    subprocess.run(f"sbatch {slurm_script}", shell=True, check=True)
+    # subprocess.run(f"sbatch {slurm_script}", shell=True, check=True)
 
 
 def main():
