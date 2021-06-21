@@ -2,9 +2,7 @@
   "data": "mnist",
   "n_iters": 10000,
   "batch_size": [100],
-  "save_best": {
-    "bool": true
-  },
+  "save_best": true,
   "lr": [1e-2, 1e-3],
   "hidden_units": {
     "key": "arch",
@@ -28,10 +26,7 @@
     "stop": -3,
     "num": 3
   },
-  "early_stopping": {
-    "bool": true,
-    "values": [true, false]
-  },
+  "early_stopping": [true, false],
   "batch_norm": {
     "key": "no_dropout_with_bn",
     "values": [true, false]

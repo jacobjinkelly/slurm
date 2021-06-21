@@ -116,13 +116,13 @@ def parse_config(config_file):
                 sweep_keys.add(args["key"])
             else:
                 sweep_args.append([(arg_name, arg) for arg in get_vals(args)])
-        elif isinstance(args, str) or isinstance(args, int) or isinstance(args, float):
-            # add the fixed argument
-            fixed_args += f"--{arg_name} {args} "  # include a space!
         elif isinstance(args, bool):
             assert args is True  # otherwise, it shouldn't have been passed in the first place!
             # add fixed bool argument
             fixed_args += f"--{arg_name} "  # include a space!
+        elif isinstance(args, str) or isinstance(args, int) or isinstance(args, float):
+            # add the fixed argument
+            fixed_args += f"--{arg_name} {args} "  # include a space!
         else:
             raise ValueError(f"Unrecognized argument {args} of type {type(args)}")
 
@@ -260,7 +260,7 @@ def launch_job(exp_dir, partition, j_name, file, args, q,
         f.write(f"{env_vars} python {file} {args}\n")
 
     # launch job
-    subprocess.run(f"sbatch {slurm_script}", shell=True, check=True)
+    # subprocess.run(f"sbatch {slurm_script}", shell=True, check=True)
 
 
 def main():
