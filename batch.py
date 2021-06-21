@@ -116,7 +116,6 @@ def parse_config(config_file):
                 sweep_keys.add(args["key"])
             else:
                 sweep_args.append([(arg_name, arg) for arg in get_vals(args)])
-
         elif isinstance(args, str) or isinstance(args, int) or isinstance(args, float):
             # add the fixed argument
             fixed_args += f"--{arg_name} {args} "  # include a space!
