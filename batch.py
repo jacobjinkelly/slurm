@@ -112,25 +112,10 @@ def parse_config(config_file):
             # sweep of values
             sweep_args.append([(arg_name, arg) for arg in args])
         elif isinstance(args, dict):
-            if "bool" in args:
-                # we have a bool argument that has no arg to be passed in with it
-                assert args["bool"] is True
-                if len(args) == 1:
-                    fixed_args += f"--{arg_name} "  # include a space!
-                else:
-                    # the config arg "values" should be just True and False
-                    assert set(args["values"]) == {True, False}
-                    if "key" in args:
-                        # this arg is swept in parallel with another one, save them all for the end
-                        sweep_keys.add(args["key"])
-                    else:
-                        # this arg is swept independently
-                        sweep_args.append([(arg_name, arg) for arg in args["values"]])
+            if "key" in args:
+                sweep_keys.add(args["key"])
             else:
-                if "key" in args:
-                    sweep_keys.add(args["key"])
-                else:
-                    sweep_args.append([(arg_name, arg) for arg in get_vals(args)])
+                sweep_args.append([(arg_name, arg) for arg in get_vals(args)])
 
         elif isinstance(args, str) or isinstance(args, int) or isinstance(args, float):
             # add the fixed argument
