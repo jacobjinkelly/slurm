@@ -8,6 +8,7 @@ def main():
     parser = argparse.ArgumentParser("Download an experiment directory")
 
     parser.add_argument("-t", "--timestamp", type=str, required=True, help="Timestamp of experiment")
+    parser.add_argument("-t", "--timestamp", type=str, help="Remote root directory")
 
     args = parser.parse_args()
 
