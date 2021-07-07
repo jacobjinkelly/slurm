@@ -3,6 +3,7 @@ Download an experiment directory.
 """
 
 import argparse
+import subprocess
 
 
 def main():
