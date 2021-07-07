@@ -10,7 +10,7 @@ def main():
     parser.add_argument("-t", "--timestamp", type=str, required=True, help="Timestamp of experiment")
     parser.add_argument("-r", "--root", type=str, default="/h/jkelly/kfac-pytorch/experiments/",
                         help="Remote root directory")
-    parser.add_argument("-h", "--host", type=str, help="SSH host")
+    parser.add_argument("-h", "--host", type=str, default="vd", help="SSH host")
 
     args = parser.parse_args()
 
