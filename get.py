@@ -11,7 +11,7 @@ def main():
     parser.add_argument("-r", "--root", type=str, default="/h/jkelly/kfac-pytorch/experiments/",
                         help="Remote root directory")
     parser.add_argument("-h", "--host", type=str, default="vd", help="SSH host")
-    parser.add_argument("-e", "--exclude", type=str, default="pt", help="Exclude files matching this regex")
+    parser.add_argument("-e", "--exclude", type=str, default="*.pt", help="Exclude files matching this regex")
 
     args = parser.parse_args()
 
