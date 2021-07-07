@@ -11,7 +11,8 @@ def main():
 
     args = parser.parse_args()
 
-    subprocess.run("rsync -av -e ssh --exclude='*.pt' vd:/h/jkelly/zero-shot/experiments/${exp_dir}/ ${exp_dir}/", shell=True, check=True)
+    cmd = "rsync -av -e ssh --exclude='*.pt' vd:/h/jkelly/zero-shot/experiments/${exp_dir}/ ${exp_dir}/"
+    subprocess.run(cmd, shell=True, check=True)
 
 
 if __name__ == "__main__":
