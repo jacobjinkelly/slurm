@@ -1,6 +1,4 @@
-"""
-Download an experiment directory.
-"""
+#!/usr/bin/python3
 
 import argparse
 import subprocess
