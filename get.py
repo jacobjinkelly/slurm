@@ -6,7 +6,7 @@ import argparse
 
 
 def main():
-    pass
+    parser = argparse.ArgumentParser("Download an experiment directory")
 
 
 if __name__ == "__main__":
