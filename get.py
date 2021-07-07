@@ -9,6 +9,8 @@ def main():
 
     parser.add_argument("-t", "--timestamp", type=str, required=True, help="Timestamp of experiment")
 
+    args = parser.parse_args()
+
 
 if __name__ == "__main__":
     main()
