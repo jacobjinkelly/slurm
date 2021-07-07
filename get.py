@@ -17,7 +17,7 @@ def main():
     # -e: use ssh for encryption
     # --exclude: exclude all checkpoint files (large and unnecessary)
 
-    cmd = "rsync -av -e ssh --exclude='*.pt' vd:/h/jkelly/zero-shot/experiments/${exp_dir}/ ${exp_dir}/"
+    cmd = f"rsync -av -e ssh --exclude='*.pt' vd:/h/jkelly/zero-shot/experiments/{args.timestamp}/ {args.timestamp}/"
     subprocess.run(cmd, shell=True, check=True)
 
 
