@@ -7,7 +7,7 @@ import subprocess
 def main():
     parser = argparse.ArgumentParser("Download an experiment directory")
 
-    parser.add_argument("-t", "--timestamp", type=str, required=True, help="Timestamp of experiment")
+    parser.add_argument("timestamp", type=str, required=True, help="Timestamp of experiment")
     parser.add_argument("-r", "--root", type=str, default="/h/jkelly/kfac-pytorch/experiments/",
                         help="Remote root directory")
     parser.add_argument("-s", "--ssh", type=str, default="vd", help="SSH host")
