@@ -8,11 +8,12 @@ Some scripts also use bash.
 ## Usage
 
 ### Setup
-To set up scripts in a new repo `new_repo`, simply run
+To set up scripts in a new repo `new_repo`, run
 ```
 ./setup.sh new_repo
 ```
-
+This will symlink scripts for running jobs and copy over
+example sweep configurations.
 
 ### Configuring Sweeps
 From the new repo, sweeps can be configured by creating a json file.
