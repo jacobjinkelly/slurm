@@ -2,8 +2,7 @@
 Scripts for launching sweeps on SLURM cluster. Originally inspired by [nng555/cluster_examples](https://github.com/nng555/cluster_examples).
 
 ## Requirements
-All scripts are compatible using Python 3.6, and presumably higher versions. 
-Some scripts also use bash.
+Python scripts are compatible using Python 3.6 or higher. Other scripts use bash.
 
 ## Usage
 
