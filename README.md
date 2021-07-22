@@ -7,12 +7,11 @@ Python scripts are compatible using Python 3.6 or higher. Other scripts use bash
 ## Usage
 
 ### Setup
-To set up scripts in a new repo `new_repo`, run
+To set up scripts in a new repository `new_repo`, run
 ```
 ./setup.sh new_repo
 ```
-This will symlink scripts for running jobs and copy over
-example sweep configurations.
+This will symlink scripts for running jobs and copy over example sweep configurations.
 
 ### Configuring Sweeps
 From the new repo, sweeps can be configured by creating a json file.
