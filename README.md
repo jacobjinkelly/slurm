@@ -47,11 +47,10 @@ The output of the job will be saved by default in `experiments/${DATE_TIME}`,
 with a directory for each configuration of hyperparameters being swept over.
 
 ## Issues
-There is a potential issue if a job is preempted after a new update to the repo has been pulled in.
-When the preempted job is relaunched it will run the newly updated code, and not the 
+There is a potential issue if a job preempts after a new update to the repo has been pulled in.
+When the preempted job relaunches it will run the newly updated code, and not the 
 original code it was run with. 
-A solution to this would be to clone the entire repo each time
-a job is launched. 
+A solution to this would be to clone the entire repo each time a job launches. 
 This would slow down launching a sweep and put unneeded load on the login node CPU and internet.
 Instead, the current solution is to make changes backwards compatible while jobs are in progress.
 This way, if pulling new updates to the repo is required, they will not interfere
