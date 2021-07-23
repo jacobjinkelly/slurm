@@ -39,6 +39,7 @@ If the key points to a dictionary, that dictionary can have the following key-va
 ### Launching Sweeps
 
 A job sweep can be launched as follows:
+
 ```
 ./batch.py -c example.json -p PARTITION -j JOB_NAME -f FILE_TO_RUN -q SLURM_QOS
 ```
@@ -47,11 +48,7 @@ The output of the job will be saved by default in `experiments/${DATE_TIME}`,
 with a directory for each configuration of hyperparameters being swept over.
 
 ## Issues
-There is a potential issue if a job preempts after a new update to the repo has been pulled in.
-When the preempted job relaunches it will run the newly updated code, and not the 
-original code it was run with. 
-A solution to this would be to clone the entire repo each time a job launches. 
-This would slow down launching a sweep and put unneeded load on the login node CPU and internet.
-Instead, the current solution is to make changes backwards compatible while jobs are in progress.
-This way, if pulling new updates to the repo is required, they will not interfere
-with existing jobs in queue if those jobs are preempted.
+If a job preempts after a new update to the repo has been pulled in, when the job relaunches it will run 
+the newly updated code.
+Thus, to prevent any potential problems, it is best practice to make pulled changes backwards compatible 
+while jobs are in progress.
