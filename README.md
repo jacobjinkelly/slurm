@@ -1,4 +1,4 @@
-# Cluster
+# Slurm
 Scripts for launching sweeps on SLURM cluster. Originally inspired by [nng555/cluster_examples](https://github.com/nng555/cluster_examples).
 
 ## Requirements
