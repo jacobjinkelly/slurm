@@ -23,14 +23,13 @@ or a dictionary.
 If the key points to a dictionary, that dictionary can have the following key-value pairs:
 - `key` can be set to a string.
   This option can be used to sweep multiple hyperparameters together.
+  The values to be swept over for each hyperparameter can be set with the `values` key.
   For example, we may want to set `--dropout 0` if `--batchnorm`, and
   `--dropout .5` if there is no batchnorm.
   See the entires with key `no_dropout_with_bn` in `example.json`.
   Note, this key string CANNOT conflict with the names of any other arguments
   set in the json file.
-- `values` can be set to a list of values to sweep over.
-  If `key` is not also set, an error occurs, since a list of values should be set directly without using a dictionary.
-  If `key` is set, then `values` must be the same length across all entries with the same `key`.
+If the key points to a bool (`true` or `false`), then the arg will be set as `--arg` instead of `--arg [value]`
 
 ### Launching Sweeps
 
