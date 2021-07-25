@@ -20,12 +20,12 @@ assert sys.version_info.minor >= 6
 def get_args():
     parser = argparse.ArgumentParser("Launch a sweep of jobs")
 
-    # arguments that need to be set for each sweep
-    parser.add_argument("-p", "--partition", type=str, required=True)
-    parser.add_argument("-j", "--j_name", type=str, required=True)
-    parser.add_argument("-f", "--file", type=str, required=True)
-    parser.add_argument("-q", "--q", type=str, required=True)
-    parser.add_argument("-c", "--config", type=str, required=True)
+    # positional arguments that need to be set for each sweep
+    parser.add_argument("partition", type=str, required=True)
+    parser.add_argument("j_name", type=str, required=True)
+    parser.add_argument("file", type=str, required=True)
+    parser.add_argument("qos", type=str, required=True)
+    parser.add_argument("config", type=str, required=True)
 
     # default arguments that will rarely be changed
     parser.add_argument("--exp_dir", type=str, default="experiments")
