@@ -21,8 +21,6 @@ Each key in the json file corresponds to a command line argument.
 The key can point to a list of values to be swept, a single value to be set, 
 or a dictionary.
 If the key points to a dictionary, that dictionary can have the following key-value pairs:
-- `bool` can be set to True, 
-  meaning the command line argument is of the form `--arg` instead of `--arg value`.
 - `key` can be set to a string.
   This option can be used to sweep multiple hyperparameters together.
   For example, we may want to set `--dropout 0` if `--batchnorm`, and
@@ -31,9 +29,7 @@ If the key points to a dictionary, that dictionary can have the following key-va
   Note, this key string CANNOT conflict with the names of any other arguments
   set in the json file.
 - `values` can be set to a list of values to sweep over.
-  This key should only be set if `key` or `bool` is set, otherwise an error occurs.
-  If neither `key` nor `bool` is set, a list of values should be set directly, without using a dictionary.
-  If `bool` is set, then `values` must be a subset of `{true, false}`.
+  If `key` is not also set, an error occurs, since a list of values should be set directly without using a dictionary.
   If `key` is set, then `values` must be the same length across all entries with the same `key`.
 
 ### Launching Sweeps
