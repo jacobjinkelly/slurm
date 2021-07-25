@@ -115,7 +115,7 @@ def parse_config(config_file):
     Parse configuration file for fixed and sweep job hyperparamters.
     """
     with open(config_file, "r") as f:
-        config = json.load(f)
+        config = json.load(f, object_pairs_hook=dict_raise_on_duplicates)
 
     fixed_args = ""
     sweep_args = []
