@@ -97,6 +97,19 @@ def get_vals(args):
     return val_fun(args["start"], args["stop"], args["num"], dtype=dtype)
 
 
+def dict_raise_on_duplicates(ordered_pairs):
+    """
+    Reject duplicate keys since by default, json allows them.
+    """
+    d = {}
+    for k, v in ordered_pairs:
+        if k in d:
+            raise ValueError("duplicate key: %r" % (k,))
+        else:
+            d[k] = v
+    return d
+
+
 def parse_config(config_file):
     """
     Parse configuration file for fixed and sweep job hyperparamters.
