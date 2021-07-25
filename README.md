@@ -29,6 +29,7 @@ If the key points to a dictionary, that dictionary can have the following key-va
   See the entires with key `no_dropout_with_bn` in `example.json`.
   Note, this key string CANNOT conflict with the names of any other arguments
   set in the json file.
+
 If the key points to a bool (`true` or `false`), then the arg will be set as `--arg` instead of `--arg [value]`
 
 ### Launching Sweeps
