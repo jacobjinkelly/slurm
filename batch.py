@@ -130,7 +130,9 @@ def parse_config(config_file):
             else:
                 sweep_args.append([(arg_name, arg) for arg in get_vals(args)])
         elif isinstance(args, bool):  # check first, since bool is also an int
-            assert args is True  # otherwise, it shouldn't have been passed in the first place!
+            if args is not True:
+                raise ValueError(f"Got redundant specification {arg_name}: {args}. "
+                                 f"{arg_name} should only be specified if it needs to be set to True.")
             # add fixed bool argument
             fixed_args += f"--{arg_name} "  # include a space!
         elif isinstance(args, str) or isinstance(args, int) or isinstance(args, float):
