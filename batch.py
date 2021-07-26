@@ -21,11 +21,11 @@ def get_args():
     parser = argparse.ArgumentParser("Launch a sweep of jobs")
 
     # positional arguments that need to be set for each sweep
-    parser.add_argument("partition", type=str, required=True)
-    parser.add_argument("j_name", type=str, required=True)
-    parser.add_argument("file", type=str, required=True)
-    parser.add_argument("qos", type=str, required=True)
-    parser.add_argument("config", type=str, required=True)
+    parser.add_argument("partition", type=str)
+    parser.add_argument("j_name", type=str)
+    parser.add_argument("file", type=str)
+    parser.add_argument("qos", type=str)
+    parser.add_argument("config", type=str)
 
     # default arguments that will rarely be changed
     parser.add_argument("--exp_dir", type=str, default="experiments")
