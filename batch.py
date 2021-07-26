@@ -203,12 +203,12 @@ def launch_sweep(args):
     for sweep_arg in sweep_args:
         j_name = args.j_name + f"_{get_j_name(sweep_arg, sweep_keys)}" if len(sweep_arg) > 0 else args.j_name
         j_args = fixed_args + get_j_args(sweep_arg, sweep_keys)
-        launch_job(args.exp_dir, args.partition, j_name, args.file, j_args, args.q,
+        launch_job(args.exp_dir, args.partition, j_name, args.file, j_args, args.qos,
                    args.no_save_dir, args.no_ckpt, args.env, args.resource, args.cpus_per_task, args.mem, args.exclude,
                    args.ntasks_per_node, args.nodes, args.env_vars)
 
 
-def launch_job(exp_dir, partition, j_name, file, args, q,
+def launch_job(exp_dir, partition, j_name, file, args, qos,
                no_save_dir, no_ckpt, env, resource, cpus_per_task, mem, exclude, ntasks_per_node, nodes, env_vars):
     """
     Launch a single job as part of the sweep.
@@ -238,7 +238,7 @@ def launch_job(exp_dir, partition, j_name, file, args, q,
         f.write(f"#SBATCH --ntasks-per-node={ntasks_per_node}\n")
         f.write(f"#SBATCH --mem={mem}G\n")
         f.write(f"#SBATCH --nodes={nodes}\n")
-        f.write(f"#SBATCH --qos={q}\n")
+        f.write(f"#SBATCH --qos={qos}\n")
 
         if exclude is not None:
             f.write(f"#SBATCH --exclude={','.join(exclude)}\n")
@@ -246,7 +246,7 @@ def launch_job(exp_dir, partition, j_name, file, args, q,
         if partition != "cpu":
             f.write(f"#SBATCH --gres=gpu:{resource}\n")
 
-        if q == "deadline":
+        if qos == "deadline":
             f.write("#SBATCH --account=deadline\n")
 
         # add command to run job script
