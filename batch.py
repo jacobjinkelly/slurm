@@ -263,13 +263,13 @@ def launch_job(args, j_name, j_args):
         f.write(f". /h/$USER/envs/{args.env}.env\n")
 
         if not args.no_save_dir:
-            args += f" --save_dir {j_dir} "
+            j_args += f" --save_dir {j_dir} "
 
         if not args.no_ckpt:
             # config checkpoint
             f.write("touch /checkpoint/$USER/$SLURM_JOB_ID/DELAYPURGE\n")
 
-            args += " --ckpt_path=/checkpoint/$USER/$SLURM_JOB_ID/ck.pt "
+            j_args += " --ckpt_path=/checkpoint/$USER/$SLURM_JOB_ID/ck.pt "
 
         # launch job
         f.write(f"{args.env_vars} python {args.file} {j_args}\n")
