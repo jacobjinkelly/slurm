@@ -135,6 +135,7 @@ def parse_config(config_file):
             sweep_args.append([(arg_name, arg) for arg in args])
         elif isinstance(args, dict):
             if "key" in args:
+                # if a sweep key is specified, cache it for now and check them all at once later
                 sweep_keys.add(args["key"])
             else:
                 sweep_args.append([(arg_name, arg) for arg in get_vals(args)])
