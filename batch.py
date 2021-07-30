@@ -151,7 +151,7 @@ def parse_config(config_file):
         else:
             raise ValueError(f"Unrecognized argument {args} of type {type(args)}")
 
-    sweep_keys_args = defaultdict(dict)
+    sweep_keys_args = defaultdict(dict)  # dict mapping sweep key -> arg_name -> values
     sweep_key_counter = 0  # count the number of hyperparameters for each key
     for sweep_key in sweep_keys:
         for arg_name, args in config.items():
@@ -163,6 +163,7 @@ def parse_config(config_file):
                     sweep_keys_args[sweep_key][arg_name] = get_vals(args)
 
                 sweep_key_counter += 1
+
         sweep_key_counter = 0
 
     for sweep_key in sorted(sweep_keys):
@@ -170,6 +171,7 @@ def parse_config(config_file):
             sweep_key_len, = set(map(len, sweep_keys_args[sweep_key].values()))
         except ValueError:
             raise ValueError(f"Got different lengths for sweep key {sweep_key}.")
+        # i indexes the value to be set for each arg under sweep_key
         sweep_args.append([(sweep_key, i) for i in range(sweep_key_len)])
 
     return fixed_args, product(*sweep_args), sweep_keys_args
@@ -199,6 +201,7 @@ def get_single_j_arg(arg_name, arg):
 def get_j(join_str, get_single_j, sweep_arg, sweep_keys):
     j_name_args = []
     for arg_name, arg in sweep_arg:
+        # if a sweep key, then the "value" is an index specifying which value to use for each arg under the sweep key
         if arg_name in sweep_keys:
             for key_arg_name in sorted(sweep_keys[arg_name]):
                 j_name_args.append(get_single_j(key_arg_name, sweep_keys[arg_name][key_arg_name][arg]))
