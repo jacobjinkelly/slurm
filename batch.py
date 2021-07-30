@@ -27,7 +27,7 @@ def get_args():
     parser.add_argument("qos", type=str)
     parser.add_argument("config", type=str)
 
-    # default arguments that will rarely be changed
+    # keyword arguments with defaults that don't need to be changed often
     parser.add_argument("--exp_dir", type=str, default="experiments")
     parser.add_argument("--env", type=str, default="torch")
     parser.add_argument("--no_save_dir", action="store_true", default=False)
