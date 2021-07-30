@@ -275,7 +275,8 @@ def launch_job(args, j_name, j_args):
         f.write(f"{args.env_vars} python {args.file} {j_args}\n")
 
     # launch job
-    subprocess.run(f"sbatch {slurm_script}", shell=True, check=True)
+    if not args.test_mode:
+        subprocess.run(f"sbatch {slurm_script}", shell=True, check=True)
 
 
 def main():
