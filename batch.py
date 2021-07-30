@@ -40,6 +40,9 @@ def get_args():
     parser.add_argument("--nodes", type=int, default=1)
     parser.add_argument("--env_vars", type=str, default="")
 
+    # configure test mode (don't actually run command to launch jobs)
+    parser.add_argument("--test_mode", action="store_true", default=False)
+
     return parser.parse_args()
 
 
