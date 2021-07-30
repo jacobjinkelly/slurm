@@ -86,12 +86,21 @@ def logspace(start, stop, num, dtype, base=10):
     return cast_dtype([math.pow(base, val) for val in linspace(start, stop, num)], dtype)
 
 
-def get_vals(args):
+def _xor(p, q):
+    return not (p and q) and p or q
+
+
+def get_vals(args, sweep_key_counter=None):
     """
     Compute the hyperparameter values if they are not specified explicitly.
     """
-    if not {"dist", "start", "stop", "num"}.issubset(args.keys()):
-        raise ValueError(f"")
+    _number_sweep_option = {"dist", "start", "stop", "num"}.issubset(args.keys())
+    _bool_sweep_option = {"one_hot_sweep"}.issubset(args.keys()) and sweep_key_counter is not None
+
+    if not _xor(_number_sweep_option, _bool_sweep_option):
+        raise ValueError(f"Got invalid combination of keys {args.keys()}. "
+                         f"Number sweep requires keys 'dist', 'start', 'stop', 'num'. "
+                         f"Bool sweep require key 'one_hot_sweep.'")
 
     if args["dist"] == "lin":
         val_fun = linspace
@@ -160,7 +169,7 @@ def parse_config(config_file):
                 if "values" in args:
                     sweep_keys_args[sweep_key][arg_name] = args["values"]
                 else:
-                    sweep_keys_args[sweep_key][arg_name] = get_vals(args)
+                    sweep_keys_args[sweep_key][arg_name] = get_vals(args, sweep_key_counter)
 
                 sweep_key_counter += 1
 
