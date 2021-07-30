@@ -102,17 +102,22 @@ def get_vals(args, sweep_key_counter=None):
                          f"Number sweep requires keys 'dist', 'start', 'stop', 'num'. "
                          f"Bool sweep require key 'one_hot_sweep.'")
 
-    if args["dist"] == "lin":
-        val_fun = linspace
-    elif args["dist"].startswith("log"):
-        base = 10 if args["dist"] == "log" else float(args["dist"][len("log"):])
-        val_fun = partial(logspace, base=base)
-    elif args["dist"] == "ln":
-        val_fun = partial(logspace, base=math.e)
+    if _number_sweep_option:
+        if args["dist"] == "lin":
+            val_fun = linspace
+        elif args["dist"].startswith("log"):
+            base = 10 if args["dist"] == "log" else float(args["dist"][len("log"):])
+            val_fun = partial(logspace, base=base)
+        elif args["dist"] == "ln":
+            val_fun = partial(logspace, base=math.e)
+        else:
+            raise ValueError(f"Unrecognized dist argument {args['dist']}")
+        dtype = args["dtype"] if "dtype" in args else "float"
+        return val_fun(args["start"], args["stop"], args["num"], dtype=dtype)
+    elif _bool_sweep_option:
+        pass
     else:
-        raise ValueError(f"Unrecognized dist argument {args['dist']}")
-    dtype = args["dtype"] if "dtype" in args else "float"
-    return val_fun(args["start"], args["stop"], args["num"], dtype=dtype)
+        raise AssertionError
 
 
 def _dict_raise_on_duplicates(ordered_pairs):
