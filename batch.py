@@ -87,6 +87,12 @@ def logspace(start, stop, num, dtype, base=10):
 
 
 def get_vals(args):
+    """
+    Compute the hyperparameter values if they are not specified explicitly.
+    """
+    if not {"dist", "start", "stop", "num"}.issubset(args.keys()):
+        raise ValueError(f"")
+
     if args["dist"] == "lin":
         val_fun = linspace
     elif args["dist"].startswith("log"):
