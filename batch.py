@@ -96,7 +96,7 @@ def get_vals(args, sweep_key_count=None, sweep_key_index=None):
     """
     _number_sweep_option = {"dist", "start", "stop", "num"}.issubset(args.keys())
     _bool_sweep_option = {"one_hot_sweep"}.issubset(args.keys()) and args["one_hot_sweep"] and \
-                         sweep_key_index is not None and sweep_key_count is None
+                         sweep_key_index is not None and sweep_key_count is not None
 
     if not _xor(_number_sweep_option, _bool_sweep_option):
         raise ValueError(f"Got invalid combination of keys {args.keys()}. "
@@ -140,8 +140,8 @@ def _count_args_in_sweep_key(config, sweep_key):
     """
     Count the number of arguments under sweep_key in config.
     """
-    return len(None for arg_name, args in config.items()
-               if isinstance(args, dict) and "key" in args and args["key"] == sweep_key)
+    return len([None for arg_name, args in config.items()
+               if isinstance(args, dict) and "key" in args and args["key"] == sweep_key])
 
 
 def parse_config(config_file):
