@@ -1,0 +1,14 @@
+{
+  "save_best": {
+    "key": "multiple_bool",
+    "values": [false, true, false]
+  },
+  "batchnorm": {
+    "key": "multiple_bool",
+    "values": [true, false, false]
+  },
+  "special": {
+    "key": "multiple_bool",
+    "values": [false, false, true]
+  }
+}
