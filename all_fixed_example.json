@@ -1,7 +1,5 @@
 {
-  "save_best": {
-    "bool": true
-  },
+  "save_best": true,
   "data": "mnist",
   "n_iters": 10000
 }
