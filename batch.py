@@ -115,7 +115,7 @@ def dict_raise_on_duplicates(ordered_pairs):
 
 def parse_config(config_file):
     """
-    Parse configuration file for fixed and sweep job hyperparamters.
+    Parse configuration file for hyperparameters being swept and those being set to a fixed value.
     """
     with open(config_file, "r") as f:
         config = json.load(f, object_pairs_hook=dict_raise_on_duplicates)
