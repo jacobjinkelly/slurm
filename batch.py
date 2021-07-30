@@ -152,13 +152,18 @@ def parse_config(config_file):
             raise ValueError(f"Unrecognized argument {args} of type {type(args)}")
 
     sweep_keys_args = defaultdict(dict)
+    sweep_key_counter = 0  # count the number of hyperparameters for each key
     for sweep_key in sweep_keys:
         for arg_name, args in config.items():
             if isinstance(args, dict) and "key" in args and args["key"] == sweep_key:
+
                 if "values" in args:
                     sweep_keys_args[sweep_key][arg_name] = args["values"]
                 else:
                     sweep_keys_args[sweep_key][arg_name] = get_vals(args)
+
+                sweep_key_counter += 1
+        sweep_key_counter = 0
 
     for sweep_key in sorted(sweep_keys):
         try:
