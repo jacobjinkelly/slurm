@@ -205,18 +205,15 @@ def launch_sweep(args):
     for sweep_arg in sweep_args:
         j_name = args.j_name + f"_{get_j_name(sweep_arg, sweep_keys)}" if len(sweep_arg) > 0 else args.j_name
         j_args = fixed_args + get_j_args(sweep_arg, sweep_keys)
-        launch_job(args.exp_dir, args.partition, j_name, args.file, j_args, args.qos,
-                   args.no_save_dir, args.no_ckpt, args.env, args.resource, args.cpus_per_task, args.mem, args.exclude,
-                   args.ntasks_per_node, args.nodes, args.env_vars)
+        launch_job(args, j_name, j_args)
 
 
-def launch_job(exp_dir, partition, j_name, file, args, qos,
-               no_save_dir, no_ckpt, env, resource, cpus_per_task, mem, exclude, ntasks_per_node, nodes, env_vars):
+def launch_job(args, j_name, j_args):
     """
     Launch a single job as part of the sweep.
     """
     # set up directories for job
-    j_dir = os.path.join(os.getcwd(), exp_dir, j_name)
+    j_dir = os.path.join(os.getcwd(), args.exp_dir, j_name)
     j_dir_scripts = os.path.join(j_dir, "scripts")
     j_dir_log = os.path.join(j_dir, "log")
     os.makedirs(j_dir_scripts)
@@ -235,20 +232,20 @@ def launch_job(exp_dir, partition, j_name, file, args, qos,
         f.write(f"#SBATCH --job-name={j_name}\n")
         f.write(f"#SBATCH --output={j_dir_log}/%j.out\n")
         f.write(f"#SBATCH --error={j_dir_log}/%j.err\n")
-        f.write(f"#SBATCH --partition={partition}\n")
-        f.write(f"#SBATCH --cpus-per-task={cpus_per_task}\n")
-        f.write(f"#SBATCH --ntasks-per-node={ntasks_per_node}\n")
-        f.write(f"#SBATCH --mem={mem}G\n")
-        f.write(f"#SBATCH --nodes={nodes}\n")
-        f.write(f"#SBATCH --qos={qos}\n")
+        f.write(f"#SBATCH --partition={args.partition}\n")
+        f.write(f"#SBATCH --cpus-per-task={args.cpus_per_task}\n")
+        f.write(f"#SBATCH --ntasks-per-node={args.ntasks_per_node}\n")
+        f.write(f"#SBATCH --mem={args.mem}G\n")
+        f.write(f"#SBATCH --nodes={args.nodes}\n")
+        f.write(f"#SBATCH --qos={args.qos}\n")
 
-        if exclude is not None:
-            f.write(f"#SBATCH --exclude={','.join(exclude)}\n")
+        if args.exclude is not None:
+            f.write(f"#SBATCH --exclude={','.join(args.exclude)}\n")
 
-        if partition != "cpu":
-            f.write(f"#SBATCH --gres=gpu:{resource}\n")
+        if args.partition != "cpu":
+            f.write(f"#SBATCH --gres=gpu:{args.resource}\n")
 
-        if qos == "deadline":
+        if args.qos == "deadline":
             f.write("#SBATCH --account=deadline\n")
 
         # add command to run job script
@@ -260,19 +257,19 @@ def launch_job(exp_dir, partition, j_name, file, args, qos,
         f.write("#!/bin/bash\n")
 
         # activate environment
-        f.write(f". /h/$USER/envs/{env}.env\n")
+        f.write(f". /h/$USER/envs/{args.env}.env\n")
 
-        if not no_save_dir:
+        if not args.no_save_dir:
             args += f" --save_dir {j_dir} "
 
-        if not no_ckpt:
+        if not args.no_ckpt:
             # config checkpoint
             f.write("touch /checkpoint/$USER/$SLURM_JOB_ID/DELAYPURGE\n")
 
             args += " --ckpt_path=/checkpoint/$USER/$SLURM_JOB_ID/ck.pt "
 
         # launch job
-        f.write(f"{env_vars} python {file} {args}\n")
+        f.write(f"{args.env_vars} python {args.file} {j_args}\n")
 
     # launch job
     subprocess.run(f"sbatch {slurm_script}", shell=True, check=True)
