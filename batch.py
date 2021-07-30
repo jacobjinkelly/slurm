@@ -90,12 +90,13 @@ def _xor(p, q):
     return not (p and q) and p or q
 
 
-def get_vals(args, sweep_key_counter=None):
+def get_vals(args, sweep_key_count=None, sweep_key_index=None):
     """
     Compute the hyperparameter values if they are not specified explicitly.
     """
     _number_sweep_option = {"dist", "start", "stop", "num"}.issubset(args.keys())
-    _bool_sweep_option = {"one_hot_sweep"}.issubset(args.keys()) and sweep_key_counter is not None
+    _bool_sweep_option = {"one_hot_sweep"}.issubset(args.keys()) and \
+                         sweep_key_index is not None and sweep_key_count is None
 
     if not _xor(_number_sweep_option, _bool_sweep_option):
         raise ValueError(f"Got invalid combination of keys {args.keys()}. "
@@ -115,7 +116,9 @@ def get_vals(args, sweep_key_counter=None):
         dtype = args["dtype"] if "dtype" in args else "float"
         return val_fun(args["start"], args["stop"], args["num"], dtype=dtype)
     elif _bool_sweep_option:
-        pass
+        bool_vals = [False for _ in range(sweep_key_count)]
+        bool_vals[sweep_key_index] = True
+        return bool_vals
     else:
         raise AssertionError
 
@@ -131,6 +134,14 @@ def _dict_raise_on_duplicates(ordered_pairs):
         else:
             d[k] = v
     return d
+
+
+def _count_args_in_sweep_key(config, sweep_key):
+    """
+    Count the number of arguments under sweep_key in config.
+    """
+    return len(None for arg_name, args in config.items()
+               if isinstance(args, dict) and "key" in args and args["key"] == sweep_key)
 
 
 def parse_config(config_file):
@@ -166,19 +177,21 @@ def parse_config(config_file):
             raise ValueError(f"Unrecognized argument {args} of type {type(args)}")
 
     sweep_keys_args = defaultdict(dict)  # dict mapping sweep key -> arg_name -> values
-    sweep_key_counter = 0  # count the number of hyperparameters for each key
+    sweep_key_index = 0  # track the current number of hyperparameters for each key
     for sweep_key in sweep_keys:
+        sweep_key_count = _count_args_in_sweep_key(config, sweep_key)
         for arg_name, args in config.items():
             if isinstance(args, dict) and "key" in args and args["key"] == sweep_key:
 
                 if "values" in args:
                     sweep_keys_args[sweep_key][arg_name] = args["values"]
                 else:
-                    sweep_keys_args[sweep_key][arg_name] = get_vals(args, sweep_key_counter)
+                    sweep_keys_args[sweep_key][arg_name] = get_vals(args, sweep_key_count, sweep_key_index)
 
-                sweep_key_counter += 1
+                sweep_key_index += 1
 
-        sweep_key_counter = 0
+        assert sweep_key_count == sweep_key_index
+        sweep_key_index = 0
 
     for sweep_key in sorted(sweep_keys):
         try:
