@@ -100,7 +100,7 @@ def get_vals(args):
     return val_fun(args["start"], args["stop"], args["num"], dtype=dtype)
 
 
-def dict_raise_on_duplicates(ordered_pairs):
+def _dict_raise_on_duplicates(ordered_pairs):
     """
     Reject duplicate keys since by default, json allows them.
     """
@@ -118,7 +118,7 @@ def parse_config(config_file):
     Parse configuration file for hyperparameters being swept and those being set to a fixed value.
     """
     with open(config_file, "r") as f:
-        config = json.load(f, object_pairs_hook=dict_raise_on_duplicates)
+        config = json.load(f, object_pairs_hook=_dict_raise_on_duplicates)
 
     fixed_args = ""
     sweep_args = []
