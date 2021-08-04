@@ -322,8 +322,6 @@ def launch_job(args, j_name, j_args):
             subprocess.check_output(f"sbatch {slurm_script}", shell=True)
         except subprocess.CalledProcessError as e:
             print(e)
-            # if there was an sbatch error for one job, it doesn't make sense to try the others
-            raise Exception
 
 
 def main():
