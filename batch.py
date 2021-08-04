@@ -318,7 +318,10 @@ def launch_job(args, j_name, j_args):
 
     # launch job
     if not args.test_mode:
-        subprocess.check_output(f"sbatch {slurm_script}", stderr=subprocess.STDOUT, shell=True)
+        try:
+            subprocess.check_output(f"sbatch {slurm_script}", stderr=subprocess.STDOUT, shell=True)
+        except subprocess.CalledProcessError as e:
+            print(e.output)
 
 
 def main():
