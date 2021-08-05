@@ -47,7 +47,7 @@ If the key points to a bool (`true` or `false`), then the arg will be set as `--
 A job sweep can be launched as follows:
 
 ```
-./batch.py -c example.json -p PARTITION -j JOB_NAME -f FILE_TO_RUN -q SLURM_QOS
+./batch.py PARTITION JOB_NAME FILE_TO_RUN SLURM_QOS CONFIG
 ```
 
 The output of the job will be saved by default in `experiments/${DATE_TIME}`, 
