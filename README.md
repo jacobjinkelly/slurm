@@ -34,11 +34,11 @@ If the key points to a dictionary, that dictionary can have the following key-va
 - `dist`, `start`, `stop`, `num` can be specified instead of `values`.
   `dist` gives the distribution of values to be swept over, and can be set to `lin`, `ln`, or `log` (base 10).
   Other bases of log can also be specified by passing in a number after "log", e.g. `log2`, `log3`, `log1.5`.
-  `start`, `stop` give the left and right endpoints for the distributes values, and `num` gives the number of values
+  `start` and `stop` give the left and right endpoints for the values, and `num` gives the number of values
   to use. Additionally, `dtype` can be specified to `float` (default) or `int`.
-- `one_hot_sweep` can be specified instead of values. This argument can be used to sweep over
-  sweep `key` consisting of all boolean values by turning on exactly one of them. For example, we may want to try
-  `--batch_norm`, `--group_norm`, and `--layer_norm` individually.
+- `one_hot_sweep` can be specified instead of `values`. This argument can be used to sweep over a `key` consisting of
+  all boolean values by turning on exactly one of them. For example, we may want to try `--batch_norm`, `--group_norm`,
+  and `--layer_norm` individually.
 
 If the key points to a bool (`true` or `false`), then the arg will be set as `--arg` instead of `--arg [value]`
 
