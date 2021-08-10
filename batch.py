@@ -319,7 +319,8 @@ def launch_job(args, j_name, j_args):
     # launch job
     if not args.test_mode:
         try:
-            subprocess.check_output(f"sbatch {slurm_script}", shell=True)
+            output = subprocess.check_output(f"sbatch {slurm_script}", shell=True)
+            print(output.decode("utf-8").rstrip())  # convert byte to string and remove extra trailing \n
         except subprocess.CalledProcessError as e:
             print(e)
 
