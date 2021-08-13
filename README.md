@@ -1,5 +1,5 @@
 # Slurm
-Scripts for launching sweeps on SLURM cluster. Originally inspired by [nng555/cluster_examples](https://github.com/nng555/cluster_examples).
+Scripts for launching sweeps on SLURM cluster.
 
 ## Requirements
 Python scripts are compatible using Python 3.6 or higher using only standard libraries. Other scripts use bash.
@@ -58,3 +58,7 @@ If a job preempts after a new update to the repo has been pulled in, when the jo
 the newly updated code.
 Thus, to prevent any potential problems, it is best practice to make pulled changes backwards compatible 
 while jobs are in progress.
+
+## Acknowledgements
+
+Originally inspired by [nng555/cluster_examples](https://github.com/nng555/cluster_examples).
