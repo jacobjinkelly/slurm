@@ -50,7 +50,7 @@ A job sweep can be launched as follows:
 ./batch.py PARTITION JOB_NAME FILE_TO_RUN SLURM_QOS CONFIG
 ```
 
-The output of the job will be saved by default in `experiments/${DATE_TIME}`, 
+The output of the job will be saved by default in `experiments/YYYY-MM-DD-HH-MM-SS`, 
 with a directory for each configuration of hyperparameters being swept over.
 
 ## Issues
