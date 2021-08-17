@@ -14,7 +14,7 @@ To set up scripts in a new repository `new_repo`, run
 This will symlink scripts for running jobs and copy over example sweep configurations.
 
 ### Configuring Sweeps
-From the new repo, sweeps can be configured by creating a json file.
+From the new repository, sweeps can be configured by creating a json file.
 See `example.json` for an example.
 
 Each key in the json file corresponds to a command line argument.
