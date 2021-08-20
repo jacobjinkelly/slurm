@@ -32,8 +32,8 @@ If the key points to a dictionary, that dictionary can have the following key-va
 - `values` must be a list of values to be swept over. It should be the same length for 
   all arguments with the same sweep `key`.
 - `dist`, `start`, `stop`, `num` can be specified instead of `values`.
-  `dist` gives the distribution of values to be swept over, and can be set to `lin`, `ln`, or `log` (base 10).
-  Other bases of log can also be specified by passing in a number after "log", e.g. `log2`, `log3`, `log1.5`.
+  `dist` gives the distribution of values to be swept over (`lin`, `ln`, or (base 10) `log`).
+  A custom base of log can be specified by appending a number after `log`, e.g. `log2`, `log3`, `log1.5`.
   `start` and `stop` give the left and right endpoints for the values, and `num` gives the number of values
   to use. Additionally, `dtype` can be specified to `float` (default) or `int`.
 - `one_hot_sweep` can be specified instead of `values`. This argument can be used to sweep over a `key` consisting of
