@@ -40,7 +40,7 @@ If the key points to a dictionary, that dictionary can have the following key-va
   all boolean values by turning on exactly one of them at a time. For example, we may want to try `--batch_norm`, `--group_norm`,
   and `--layer_norm` individually.
 
-If the key points to a bool (`true` or `false`), then the arg will be set as `--arg` instead of `--arg [value]`
+If the key points to a bool (`true` or `false`), then the arg will be set as `--arg` instead of `--arg [value]`.
 
 ### Launching Sweeps
 
