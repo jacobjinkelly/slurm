@@ -2,7 +2,7 @@
 Scripts for launching sweeps on a SLURM cluster.
 
 ## Requirements
-Python scripts are compatible using Python 3.6 or higher using only standard libraries. Other scripts use bash.
+Python scripts are compatible using Python 3.6 or higher, using only standard libraries. Other scripts use bash.
 
 ## Usage
 
