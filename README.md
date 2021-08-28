@@ -17,7 +17,7 @@ This will symlink scripts for running jobs and copy over example sweep configura
 From the new repository, sweeps can be configured by creating a json file.
 See `example.json` for an example.
 
-Each key in the json file corresponds to a command line argument.
+Each key in the json file corresponds to a separate command line argument.
 The key can point to a list of values to be swept, a single value to be set, 
 or a dictionary.
 
