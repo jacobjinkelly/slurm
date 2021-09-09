@@ -26,7 +26,7 @@ If the key points to a dictionary, that dictionary can have the following key-va
   This option can be used to sweep multiple hyperparameters together.
   For example, we may want to set `--dropout 0` if `--batchnorm`, and
   `--dropout .5` if there is no batchnorm.
-  See the entires with key `no_dropout_with_bn` in `example.json` for an example.
+  See the entries with key `no_dropout_with_bn` in `example.json` for an example.
   Note, this key string CANNOT conflict with the names of any other arguments
   set in the json file.
 - `values` must be a list of values to be swept over. It should be the same length for 
