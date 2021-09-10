@@ -51,7 +51,7 @@ A job sweep can be launched as follows:
 ```
 
 The output of the job will be saved by default in `experiments/YYYY-MM-DD-HH-MM-SS`, 
-with a directory for each configuration of hyperparameters being swept over.
+with a directory for each configuration of hyperparameters in the sweep.
 
 ## Issues
 If a job preempts after a new update to the repo has been pulled in, when the job relaunches it will run 
