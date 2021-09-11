@@ -22,7 +22,7 @@ The key can point to a list of values to be swept, a single value to be set,
 or a dictionary.
 
 If the key points to a dictionary, that dictionary can have the following key-value pairs:
-- `key` can be set to a string.
+- `key` must be set to a string.
   This option can be used to sweep multiple hyperparameters together.
   For example, we may want to set `--dropout 0` if `--batchnorm`, and
   `--dropout .5` if there is no batchnorm.
