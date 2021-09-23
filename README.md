@@ -23,11 +23,11 @@ or a dictionary.
 
 If the key points to a dictionary, that dictionary can have the following key-value pairs:
 - `key` must be a string.
-  This option can be used to sweep multiple hyperparameters together.
+  This option can be used to sweep multiple hyperparameters together under one `key`.
   For example, we may want to set `--dropout 0` if `--batchnorm`, and
   `--dropout .5` if there is no batchnorm.
   See the entries with key `no_dropout_with_bn` in `example.json` for an example.
-  Note, this key string CANNOT conflict with the names of any other arguments
+  Note that the value of `key` CANNOT conflict with the names of any other arguments
   set in the json file.
 - `values` must be a list of values to be swept over. It should be the same length for 
   all arguments with the same sweep `key`.
