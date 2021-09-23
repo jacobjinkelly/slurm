@@ -2,7 +2,7 @@
 Scripts for launching hyperparameter sweeps on a SLURM cluster.
 
 ## Requirements
-Python scripts are compatible using Python 3.6 or higher, using only standard libraries. Other scripts use bash.
+Python scripts are configured to use the system installation of Python3 (`#!/usr/bin/python3`). As such they only use standard libraries, and are compatible with Python 3.6 or higher. Other scripts use bash.
 
 ## Usage
 
