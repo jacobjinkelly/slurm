@@ -53,6 +53,14 @@ A job sweep can be launched as follows:
 The output of the job will be saved by default in `experiments/YYYY-MM-DD-HH-MM-SS`, 
 with a directory for each configuration of hyperparameters in the sweep.
 
+### Checking status of sweep
+The file `check.py` can be used to check the status of each job in a sweep. 
+It is automatically copied into the sweep directory for each new sweep that is launched. 
+Run `./check.py` to see the final line of output for each job in the sweep.
+
+### Downloading experiment results
+The file `get.py` can be used to download experiments from the cluster to a local machine via `rsync`. The timestamp for the experiment must be specified.
+
 ## Issues
 If a job preempts after a new update to the repo has been pulled in, when the job relaunches it will run 
 the newly updated code.
