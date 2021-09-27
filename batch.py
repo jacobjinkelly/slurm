@@ -101,7 +101,7 @@ def get_vals(args, sweep_key_count=None, sweep_key_index=None):
     if not _xor(_number_sweep_option, _bool_sweep_option):
         raise ValueError(f"Got invalid combination of keys {args.keys()}. "
                          f"Number sweep requires keys 'dist', 'start', 'stop', 'num'. "
-                         f"Bool sweep require key 'one_hot_sweep' set to true.")
+                         f"Bool sweep requires key 'one_hot_sweep' set to true.")
 
     if _number_sweep_option:
         if args["dist"] == "lin":
