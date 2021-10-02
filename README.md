@@ -44,7 +44,7 @@ If the key points to a bool (`true` or `false`), then the arg will be set as `--
 
 ### Launching Sweeps
 
-A job sweep can be launched as follows:
+A hyperparameter sweep can be launched as follows:
 
 ```
 ./batch.py PARTITION JOB_NAME FILE_TO_RUN SLURM_QOS CONFIG
