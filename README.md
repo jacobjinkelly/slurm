@@ -50,7 +50,7 @@ A hyperparameter sweep can be launched as follows:
 ./batch.py PARTITION JOB_NAME FILE_TO_RUN SLURM_QOS CONFIG
 ```
 
-The output of the job will be saved by default in `experiments/YYYY-MM-DD-HH-MM-SS`, 
+Run `./batch.py -h` to see more options. The output of the job will be saved by default in `experiments/YYYY-MM-DD-HH-MM-SS`, 
 with a directory for each configuration of hyperparameters in the sweep.
 
 ### Checking status of sweeps
