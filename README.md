@@ -56,12 +56,13 @@ with a directory for each configuration of hyperparameters in the sweep.
 
 ### Checking status of sweeps
 The file `check.py` can be used to check the status of each job in a sweep. 
-It is automatically copied into the sweep directory for each new sweep that is launched. 
+It is automatically copied into the sweep directory when a new sweep is launched. 
 Run `./check.py` to see the final line of output for each job in the sweep.
 Run `./check.py -h` to see the full list of options.
 
 ### Downloading experiment results
-The file `get.py` can be used to download experiments from the cluster to a local machine via `rsync`. The timestamp for the experiment must be specified. Run `./get.py -h` to see the full list of options.
+The file `get.py` can be used to download experiments from the cluster to a local machine via `rsync`. 
+The timestamp for the experiment must be specified. Run `./get.py -h` to see the full list of options.
 
 ## Issues
 If a job preempts after a new update to the repo has been pulled in, when the job relaunches it will run 
