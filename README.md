@@ -61,8 +61,8 @@ Run `./check.py` to see the final line of output for each job in the sweep.
 Run `./check.py -h` to see the full list of options.
 
 ### Downloading experiment results
-Run `./get.py` to locally download experiments from the cluster via `rsync`. 
-The timestamp for the experiment must be specified. Run `./get.py -h` to see the full list of options.
+Run `./get.py YYYY-MM-DD-HH-MM-SS` to locally download the experiment with corresponding timestamp from the cluster via `rsync`. 
+Run `./get.py -h` to see the full list of options.
 
 ## Issues
 If a job preempts after a new update to the repo has been pulled in, when the job relaunches it will run 
