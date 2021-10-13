@@ -55,9 +55,8 @@ Run `./batch.py -h` to see more options. The output of the job will be saved by 
 with a directory for each configuration of hyperparameters in the sweep.
 
 ### Checking status of sweeps
-The file `check.py` can be used to check the status of each job in a sweep. 
-It is automatically copied into the sweep directory when a new sweep is launched. 
-Run `./check.py` to see the final line of output for each job in the sweep.
+Run `./check.py` from within `experiments/YYYY-MM-DD-HH-MM-SS` to see the final line of output for each job in the sweep.
+The file `check.py` is automatically copied into `experiments/YYYY-MM-DD-HH-MM-SS` for each sweep.
 Run `./check.py -h` to see the full list of options.
 
 ### Downloading experiment results
