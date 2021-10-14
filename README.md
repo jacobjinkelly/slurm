@@ -38,8 +38,8 @@ If the key points to a dictionary, that dictionary can have the following key-va
   - `num` gives the number of values to use. 
   - `dtype` can be specified to `float` (default) or `int`.
 - `one_hot_sweep` can be specified instead of `values`. This argument can be used to sweep over a `key` consisting of
-  all boolean values by turning on exactly one of them at a time. For example, we may want to try `--batch_norm`, `--group_norm`,
-  and `--layer_norm` individually.
+  all boolean values by turning on exactly one of them at a time. 
+  For example, we may want to try `--batch_norm`, `--group_norm`, and `--layer_norm` individually.
 
 If the key points to a bool (`true` or `false`), then the arg will be set as `--arg` instead of `--arg [value]`.
 
