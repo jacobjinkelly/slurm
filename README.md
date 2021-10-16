@@ -60,7 +60,7 @@ The file `check.py` is automatically copied into `experiments/YYYY-MM-DD-HH-MM-S
 Run `./check.py -h` to see the full list of options.
 
 ### Downloading experiment results
-Run `./get.py YYYY-MM-DD-HH-MM-SS` to locally download the experiment with corresponding timestamp from the cluster via `rsync`. 
+Run `./get.py YYYY-MM-DD-HH-MM-SS` to locally download the experiment `experiments/YYYY-MM-DD-HH-MM-SS` from the cluster via `rsync`. 
 Run `./get.py -h` to see the full list of options.
 
 ## Issues
