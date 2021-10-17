@@ -18,7 +18,7 @@ From the new repository, sweeps can be configured by creating a json file.
 For an example, see `example.json`.
 
 Each key in the json file corresponds to a separate command line argument.
-The key can point to a list of values to be swept, a single value to be set, 
+The key's value can be a list of values to be swept, a single value to be set, 
 or a dictionary.
 
 If the key points to a dictionary, that dictionary can have the following key-value pairs:
