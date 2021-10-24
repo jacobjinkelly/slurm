@@ -12,7 +12,7 @@ def main():
                         help="Remote root directory")
     parser.add_argument("-s", "--ssh", type=str, default="vd", help="SSH host")
     parser.add_argument("-e", "--exclude", type=str, nargs="+", default=["*.pickle", "*.pt"],
-                        help="Exclude files matching this regex")
+                        help="Exclude files matching these regex(s)")
 
     args = parser.parse_args()
 
