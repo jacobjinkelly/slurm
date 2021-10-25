@@ -63,6 +63,9 @@ Run `./check.py -h` to see the full list of options.
 Run `./get.py YYYY-MM-DD-HH-MM-SS` to locally download the experiment `experiments/YYYY-MM-DD-HH-MM-SS` from the cluster via `rsync`. 
 Run `./get.py -h` to see the full list of options.
 
+### Cancelling jobs
+Run `scancel -u $USER` to cancel all jobs. Run `./cancel.sh jobid_start jobid_end` to `scancel` jobs with ids `jobid_start` through `jobid_end` (inclusive).
+
 ## Issues
 If a job preempts after a new update to the repo has been pulled in, when the job relaunches it will run 
 the newly updated code.
