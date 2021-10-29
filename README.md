@@ -54,6 +54,9 @@ A hyperparameter sweep can be launched as follows:
 Run `./batch.py -h` to see more options. The output of the job will be saved by default in `experiments/YYYY-MM-DD-HH-MM-SS`, 
 with a directory for each configuration of hyperparameters in the sweep.
 
+### Checking SLURM Status
+Add bash_aliases defined in `.bash_profile`, then run `q` to see the SLURM queue for your jobs, and `sq` to see the slurm queue for all jobs.
+
 ### Checking status of sweeps
 Run `./check.py` from within `experiments/YYYY-MM-DD-HH-MM-SS` to see the final line of output for each job in the sweep.
 The file `check.py` is automatically copied into `experiments/YYYY-MM-DD-HH-MM-SS` for each sweep.
